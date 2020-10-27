@@ -27,5 +27,4 @@ function fetchToppings() {
     .then((toppingJson) => {
         console.log(toppingJson)
     })
-    .catch()
 }

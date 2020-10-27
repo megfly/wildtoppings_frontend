@@ -8,9 +8,72 @@
 <!-- script tag connects javascript file with html file -->
         <script type="text/javascript" src="./src/index.js"></script> 
     </head>
+
     <body>
+        <h1>Wild Pizza Toppings!</h1>
         🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕
+<!-- container html -->
        <div class="pizza-container"></div>
-<!--  -->
+
+<!-- pizza form html -->
+            <form class="create-pizza-form">
+                <h3>Create a Pizza!</h3>
+                    <input id="input-title"
+                    type="text" 
+                    name="title" 
+                    value="" 
+                    placeholder="Enter a pizza name..."
+                    >
+                <br>
+                    <br>
+                    <input id="input-description" 
+                    name="description" 
+                    value="" 
+                    placeholder="Enter a pizza description..." 
+                    class="input-text"
+                    >
+                <br>
+                <h3>Add Some Toppings!</h3>
+                    <input id="input-topping1"
+                    type="text" 
+                    name="topping1" 
+                    value="" 
+                    placeholder="topping..."
+                    >
+            <br>
+                <br>
+                    <input id="input-topping2"
+                    type="text" 
+                    name="topping2" 
+                    value="" 
+                    placeholder="topping..."
+                    >
+            <br>
+                <br>
+                    <input id="input-topping3"
+                    type="text" 
+                    name="topping3" 
+                    value="" 
+                    placeholder="topping..."
+                    >
+            <br>
+                <br>
+                    <input id="input-topping4"
+                    type="text" 
+                    name="topping4" 
+                    value="" 
+                    placeholder="topping..."
+                    >
+            <br>
+                <br>
+                    <input id="create-pizza-btn"
+                    type="submit"
+                    name="submit"
+                    value="Create New Pizza!"
+                    class="submit"
+                  />
+                <br><br>
+            </form>
+
     </body>
 </html>

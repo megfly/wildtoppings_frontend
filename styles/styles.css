@@ -1,4 +1,13 @@
 
+  form.create-pizza-form {
+    font-size: 1.0em;
+    border: darkred;
+    height: 400px;
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
   div.pizza-container {
     display: grid;
     grid-template-columns: 1fr;

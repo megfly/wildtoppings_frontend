@@ -1,8 +1,4 @@
-body {
-    margin: 3;
-    padding: 0;
-  }
-  
+
   div.pizza-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -38,9 +34,4 @@ body {
     color: #fff;
     background-color: green;
     border-radius: 10px;
-  }
-  
-  button.release {
-    float: right;
-    background-color: #E1332D;
   }

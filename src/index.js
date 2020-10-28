@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchPizzas()
     //fetchToppings()
 
-        //submit events
+        // Event Listeners
         const createPizzaForm = document.querySelector('#create-pizza-form')
         createPizzaForm.addEventListener("submit", (event) => {
             pizzaFormHandler(event)
@@ -82,9 +82,32 @@ const addPizzasToTheDOM = (pizzaData) => {
 
 // })}
 
+function postRequestForPizzaForm(title, description) {
+    console.log(title, description)
 
-//event listeners
+    const configObj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            title: title,
+            description: description,
+        })
+    }
+    fetch(PIZZAS_URL, configObj)    
+        .then(response => response.json())
+        .then(pizzaJson => {
+            console.log(pizzaJson);
+        })
 
+        //add the new pizza data to the DOM
+        const pizzaData = pizzaJson.data
+
+        let newPizza = new Pizza(pizzaData, pizzaData.attributes) //new Pizza?????
+        document.querySelector('#pizza-container').innerHTML += newPizza
+    }
 
 //functions
 function pizzaFormHandler(event) {
@@ -94,8 +117,4 @@ function pizzaFormHandler(event) {
     const descriptionInput = document.querySelector('#input-description').value
 
     postRequestForPizzaForm(titleInput, descriptionInput)
-}
-
-function postRequestForPizzaForm(title, description) {
-    console.log()
 }

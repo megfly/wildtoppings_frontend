@@ -3,6 +3,9 @@ const BASE_URL = "http://localhost:3000"
 const PIZZAS_URL = `${BASE_URL}/api/v1/pizzas`
 const TOPPINGS_URL = `${BASE_URL}/api/v1/toppings`
 
+//grabbing things
+const createPizzaForm = document.querySelector('.create-pizza-form')
+
 // DOMContent Loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log("loaded")
@@ -51,4 +54,15 @@ const addPizzas = pizzaArr => {
         const pizzaContainer = document.querySelector(".pizza-container")
         pizzaContainer.appendChild(div)
     })
+}
+
+//event listeners
+createPizzaForm.addEventListener("submit", (event) => {
+    pizzaFormHandler(event)
+})
+
+//functions
+function pizzaFormHandler(event) {
+    event.preventDefault()
+    console.log(event)
 }

@@ -7,7 +7,6 @@ const TOPPINGS_URL = `${BASE_URL}/api/v1/toppings`
 document.addEventListener('DOMContentLoaded', () => {
     console.log("loaded")
     fetchPizzas()
-    //fetchToppings()
 
         // Event Listeners
         const createPizzaForm = document.querySelector('#create-pizza-form')
@@ -21,27 +20,26 @@ function fetchPizzas() {
     fetch(PIZZAS_URL) //promise
     .then((response) => response.json())
     .then((pizzaJson) => {
-        let pizzaData = pizzaJson
-        addPizzasToTheDOM(pizzaData)
+        
+        pizzaJson.data.forEach(pizza => {
+            let newPizza = new Pizza(pizza, pizza.attributes)
+
+            console.log(newPizza)
+            
+            // let pizzaContainer = document.querySelector('#pizza-container').innerHTML
+            // pizzaContainer.renderPizzaCard()
+
+        })
     })
 };
 
-// function fetchToppings() {
-//     fetch(TOPPINGS_URL) //promise
-//     .then((response) => response.json())
-//     .then((toppingJson) => {
-//         let toppingArray = toppingJson
-//         addToppingsToTheDOM(toppingArray)
-//     })
-// };
-
 //Adding objects to the DOM
-const addPizzasToTheDOM = (pizzaData) => {
-    pizzaData.data.forEach(pizza => {
+function addPizzasToTheDOM (pizzaData) {
+    //pizzaData.data.forEach(pizza => {
 
         //debugger
         //needs two args cuz fastjson api is nested
-        let newPizza = new Pizza(pizza, pizza.attributes) //new instance of pizza class
+        //let newPizza = new Pizza(pizza, pizza.attributes) //new instance of pizza class
         //document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard()
         
     const div = document.createElement("div")
@@ -50,13 +48,11 @@ const addPizzasToTheDOM = (pizzaData) => {
     const button = document.createElement("button")
 
         div.setAttribute("class", "card")
-        div.setAttribute("data-id", pizza.id)
-        button.setAttribute("data-id", pizza.id)
+        //div.setAttribute("data-id", pizza.id)
+        //button.setAttribute("data-id", pizza.id)
 
-        console.log(pizza)
-
-        pTagForTitle.innerText = pizza.attributes.title
-        pTagForDescription.innerText = pizza.attributes.description
+        // pTagForTitle.innerText = pizza.attributes.title
+        // pTagForDescription.innerText = pizza.attributes.description
         button.innerText = "Delete Pizza!"
         
         div.appendChild(pTagForTitle)
@@ -66,27 +62,7 @@ const addPizzasToTheDOM = (pizzaData) => {
         const pizzaCards = document.querySelector("#pizza-cards")
         pizzaCards.appendChild(div)
 
-    })
     }
-
-// const addToppingsToTheDOM = toppingArr => {
-//     //console.log(toppingArr)
-//     toppingArr.forEach(topping => {
-//         console.log(topping)
-        
-//         const ingredientUl = document.querySelector(".ingredient-list")
-//         const pizzaCards = document.querySelector("#pizza-cards")
-//         const ul = document.createElement("ul")
-//         const li = document.createElement("li")
-//         const deleteToppingButton = document.createElement("button")
-
-//         li.innerText = topping.ingredient_name
-//         deleteToppingButton.innerHTML = "Delete"
-
-//         pizzaCards.appendChild(li)
-//         pizzaCards.appendChild(deleteToppingButton)
-
-// })}
 
 function postRequestForPizzaForm(title, description) {
     console.log(title, description)

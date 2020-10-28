@@ -7,10 +7,20 @@ class Pizza {
         this.toppings = pizzaAttributes.toppings
         Pizza.all.push(this)
     }
+    renderPizzaCard() {
+        return `
+        <div data-id=${this.id}>
+            <h3>${this.title}></h3>
+    `
+    }
 
-    // renderPizzaCard() {
-    //     return html
-    // }
+    renderULs() {
+        const ul = document.querySelector(`#toppings`)
+
+        this.toppings.forEach(topping => {
+            ul.innerHTML += `<li>${topping.ingredient_name}</li>`
+        })
+    }
 }
 
 //pushing each new instance of pizza class into the array

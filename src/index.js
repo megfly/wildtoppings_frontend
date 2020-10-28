@@ -38,6 +38,11 @@ function fetchPizzas() {
 //Adding objects to the DOM
 const addPizzasToTheDOM = (pizzaData) => {
     pizzaData.data.forEach(pizza => {
+
+        //debugger
+        //needs two args cuz fastjson api is nested
+        let newPizza = new Pizza(pizza, pizza.attributes) //new instance of pizza class
+        //document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard()
         
     const div = document.createElement("div")
     const pTagForTitle = document.createElement("p")
@@ -46,6 +51,7 @@ const addPizzasToTheDOM = (pizzaData) => {
 
         div.setAttribute("class", "card")
         div.setAttribute("data-id", pizza.id)
+        button.setAttribute("data-id", pizza.id)
 
         console.log(pizza)
 

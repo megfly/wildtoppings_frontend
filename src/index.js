@@ -3,10 +3,6 @@ const BASE_URL = "http://localhost:3000"
 const PIZZAS_URL = `${BASE_URL}/api/v1/pizzas`
 const TOPPINGS_URL = `${BASE_URL}/api/v1/toppings`
 
-//variables
-const createPizzaForm = document.querySelector('#create-pizza-form')
-const pizzaCards = document.querySelector("#pizza-cards")
-
 // DOMContent Loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log("loaded")
@@ -14,9 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     //fetchToppings()
 
         //submit events
-        // createPizzaForm.addEventListener("click", (event) => {
-        //     pizzaFormHandler(event)
-        // })
+        const createPizzaForm = document.querySelector('#create-pizza-form')
+        createPizzaForm.addEventListener("submit", (event) => {
+            pizzaFormHandler(event)
+        })
 })
 
 // Fetch Requests
@@ -90,7 +87,15 @@ const addPizzasToTheDOM = (pizzaData) => {
 
 
 //functions
-// function pizzaFormHandler(event) {
-//     event.preventDefault()
-//     console.log(event)
-// }
+function pizzaFormHandler(event) {
+    event.preventDefault()
+
+    const titleInput = document.querySelector('#input-title').value
+    const descriptionInput = document.querySelector('#input-description').value
+
+    postRequestForPizzaForm(titleInput, descriptionInput)
+}
+
+function postRequestForPizzaForm(title, description) {
+    console.log()
+}

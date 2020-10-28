@@ -3,14 +3,19 @@ const BASE_URL = "http://localhost:3000"
 const PIZZAS_URL = `${BASE_URL}/api/v1/pizzas`
 const TOPPINGS_URL = `${BASE_URL}/api/v1/toppings`
 
-//grabbing things
-const createPizzaForm = document.querySelector('.create-pizza-form')
+//variables
+const createPizzaForm = document.querySelector('#create-pizza-form')
 
 // DOMContent Loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log("loaded")
     fetchPizzas()
     fetchToppings()
+
+        //submit events
+        // createPizzaForm.addEventListener("click", (event) => {
+        //     pizzaFormHandler(event)
+        // })
 })
 
 // Fetch Requests
@@ -19,7 +24,7 @@ function fetchPizzas() {
     .then((response) => response.json())
     .then((pizzaJson) => {
         let pizzaArray = pizzaJson
-        addPizzas(pizzaArray)
+        addPizzasToTheDOM(pizzaArray)
     })
 };
 
@@ -32,7 +37,7 @@ function fetchToppings() {
 };
 
 //Adding objects to the DOM
-const addPizzas = pizzaArr => {
+const addPizzasToTheDOM = pizzaArr => {
     pizzaArr.data.forEach(pizza => {
         const div = document.createElement("div")
         const pTagForTitle = document.createElement("p")
@@ -51,18 +56,16 @@ const addPizzas = pizzaArr => {
         div.appendChild(ul)
         div.appendChild(button)
         
-        const pizzaContainer = document.querySelector(".pizza-container")
-        pizzaContainer.appendChild(div)
+        const pizzaCards = document.querySelector("#pizza-cards")
+        pizzaCards.appendChild(div)
     })
 }
 
 //event listeners
-createPizzaForm.addEventListener("submit", (event) => {
-    pizzaFormHandler(event)
-})
+
 
 //functions
-function pizzaFormHandler(event) {
-    event.preventDefault()
-    console.log(event)
-}
+// function pizzaFormHandler(event) {
+//     event.preventDefault()
+//     console.log(event)
+// }

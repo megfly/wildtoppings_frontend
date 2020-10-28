@@ -1,13 +1,4 @@
 
-  form.create-pizza-form {
-    font-size: 1.0em;
-    border: darkred;
-    height: 400px;
-    width: 300px;
-    padding: 10px;
-    border-radius: 10px;
-  }
-  
   div.pizza-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -23,24 +14,5 @@
     width: 300px;
     box-shadow: 10px 10px grey;
     padding: 10px;
-    border-radius: 10px;
-  }
-  
-  p {
-    font-size: 1.5em;
-    color: black;
-    font-family: Helvetica;
-  }
-  
-  li {
-    font-size: 1.05em;
-    list-style: none;
-    padding-right: 20px;
-  }
-  
-  button {
-    font-size: .65em;
-    color: #fff;
-    background-color: green;
     border-radius: 10px;
   }

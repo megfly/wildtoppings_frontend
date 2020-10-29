@@ -16,20 +16,20 @@ class Pizza {
         <h3 class="card-title">${this.title}</h3>
             <p class="card-text">${this.description}</p>
         <ul class="toppings-list">
-            <li class="topping-1"> </li>
-            <li class="topping-2"> </li>
-            <li class="topping-3"> </li>
-            <li class="topping-4"> </li>
-        
+            
         </ul>
         `
     }
 
 renderLis() {
-    const ul = document.querySelector("#toppings-list")
 
     this.toppings.forEach(topping => {
         console.log(topping)
+
+        const ul = document.querySelector("#toppings-list")
+        const li = document.createElement('li')
+
+        li.append(ul)
     })
 }
 }

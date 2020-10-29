@@ -1,12 +1,24 @@
 class Pizza {
     constructor(pizza, pizzaAttributes) {
+        Pizza.all = []
+
         this.id = pizza.id
         this.title = pizzaAttributes.title
         this.description = pizzaAttributes.description
-        //this.topping = pizzaAttributes.ingredient_name
         this.toppings = pizzaAttributes.toppings
+        console.log(pizza)
         Pizza.all.push(this)
     }
+
+//functions
+pizzaFormHandler(event) {
+    event.preventDefault()
+
+    const titleInput = document.querySelector('#input-title').value
+    const descriptionInput = document.querySelector('#input-description').value
+
+    postRequestForPizzaForm(titleInput, descriptionInput)
+}
 
     renderPizzaCard() {
         return `
@@ -20,19 +32,4 @@ class Pizza {
         </ul>
         `
     }
-
-renderLis() {
-
-    this.toppings.forEach(topping => {
-        console.log(topping)
-
-        const ul = document.querySelector("#toppings-list")
-        const li = document.createElement('li')
-
-        li.append(ul)
-    })
 }
-}
-
-//pushing each new instance of pizza class into the array
-Pizza.all = [];

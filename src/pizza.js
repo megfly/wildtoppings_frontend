@@ -6,19 +6,8 @@ class Pizza {
         this.title = pizzaAttributes.title
         this.description = pizzaAttributes.description
         this.toppings = pizzaAttributes.toppings
-        console.log(pizza)
         Pizza.all.push(this)
     }
-
-//functions
-pizzaFormHandler(event) {
-    event.preventDefault()
-
-    const titleInput = document.querySelector('#input-title').value
-    const descriptionInput = document.querySelector('#input-description').value
-
-    postRequestForPizzaForm(titleInput, descriptionInput)
-}
 
     renderPizzaCard() {
         return `

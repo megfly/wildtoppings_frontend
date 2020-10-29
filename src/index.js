@@ -63,14 +63,13 @@ function postRequestForPizzaForm(title, description) {
         fetch(TOPPINGS_URL) //promise
         .then((response) => response.json())
         .then((toppingJson) => {
-            
-            toppingJson.forEach(topping => {
-                let newTopping = new Topping(topping)
-    
-                document.querySelector('#pizza-container').innerHTML += newTopping.renderToppingLi()
+             
+            let newTopping = new Topping(toppingJson)
+            addPizzaToppingsToDOM(toppingJson)
+
             })
-        })
-    };
+        }
+    ;
 
 
 //functions
@@ -83,12 +82,13 @@ function pizzaFormHandler(event) {
     postRequestForPizzaForm(titleInput, descriptionInput)
 }
 
-//functions
-function pizzaFormHandler(event) {
-    event.preventDefault()
+function addPizzaToppingsToDOM(topping) {
+   
+    const ul = document.querySelector(`ul#pizza-${this.id}-toppings`)
 
-    const titleInput = document.querySelector('#input-title').value
-    const descriptionInput = document.querySelector('#input-description').value
-
-    postRequestForPizzaForm(titleInput, descriptionInput)
+    topping.forEach(ing => {
+        console.log(ing)
+        
+        ul.innerHTML += `<li>${ing.ingredient_name}</li>`
+    });
 }

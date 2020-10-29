@@ -7,6 +7,7 @@ const TOPPINGS_URL = `${BASE_URL}/api/v1/toppings`
 document.addEventListener('DOMContentLoaded', () => {
     console.log("loaded")
     fetchPizzas()
+    fetchToppings()
 
         // Event Listeners
         const createPizzaForm = document.querySelector('#create-pizza-form')
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
 })
 
-    // Fetch Requests
+// Fetch Requests for pizzas
     function fetchPizzas() {
         fetch(PIZZAS_URL) //promise
         .then((response) => response.json())
@@ -23,9 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             pizzaJson.data.forEach(pizza => {
                 let newPizza = new Pizza(pizza, pizza.attributes)
-                
-                console.log(pizza)
-                console.log(pizza.attributes)
     
                 document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard()
             })
@@ -58,6 +56,33 @@ function postRequestForPizzaForm(title, description) {
             let newPizza = new Pizza(pizzaData, pizzaData.attributes) //new Pizza?????
             document.querySelector('#pizza-container').innerHTML += newPizza
         }
+
+
+// Fetch Requests for ingredients
+    function fetchToppings() {
+        fetch(TOPPINGS_URL) //promise
+        .then((response) => response.json())
+        .then((toppingJson) => {
+            
+            toppingJson.forEach(topping => {
+                let newTopping = new Topping(topping)
+    
+                document.querySelector('#pizza-container').innerHTML += newTopping.renderToppingLi()
+            })
+        })
+    };
+
+
+//functions
+function pizzaFormHandler(event) {
+    event.preventDefault()
+
+    const titleInput = document.querySelector('#input-title').value
+    const descriptionInput = document.querySelector('#input-description').value
+
+    postRequestForPizzaForm(titleInput, descriptionInput)
+}
+
 //functions
 function pizzaFormHandler(event) {
     event.preventDefault()

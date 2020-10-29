@@ -24,8 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             pizzaJson.data.forEach(pizza => {
                 let newPizza = new Pizza(pizza, pizza.attributes)
-    
+                
                 document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard()
+                addPizzaToppingsToDOM(pizza)
+                
             })
         })
     };
@@ -65,7 +67,7 @@ function postRequestForPizzaForm(title, description) {
         .then((toppingJson) => {
              
             let newTopping = new Topping(toppingJson)
-            addPizzaToppingsToDOM(toppingJson)
+            //addPizzaToppingsToDOM(toppingJson)
 
             })
         }
@@ -82,13 +84,36 @@ function pizzaFormHandler(event) {
     postRequestForPizzaForm(titleInput, descriptionInput)
 }
 
-function addPizzaToppingsToDOM(topping) {
-   
-    const ul = document.querySelector(`ul#pizza-${this.id}-toppings`)
+// function addPizzaToppingsToDOM(topping) {
 
-    topping.forEach(ing => {
-        console.log(ing)
-        
-        ul.innerHTML += `<li>${ing.ingredient_name}</li>`
+//     topping.forEach(ing => {
+//         const ul = document.querySelector(`#pizza-${ing.pizza_id}-toppings`)
+//         let test = document.querySelector('#pizza-card')
+
+//         console.log(ing.pizza_id)
+//         console.log(`#pizza-${ing.pizza_id}-toppings`)
+
+//         test.innerHTML += `<li>${ing.ingredient_name}</li>`
+//     });
+// }
+
+function addPizzaToppingsToDOM(pizza) {
+
+    console.log(pizza)
+
+    pizza.attributes.toppings.forEach(ing => {
+
+        console.log(ing.ingredient_name)
+
+        const ul = document.querySelector(`#pizza-${ing.pizza_id}-toppings`)
+        let pizzaContainer = document.querySelector('#pizza-container')
+        let pizzaCard = document.querySelector(`#pizza-card-${ing.pizza_id}`)
+
+            const li = document.createElement('li')
+            li.innerHTML += `<li>${ing.ingredient_name}</li>`
+            pizzaContainer.appendChild(li)
+            
+        //i want to add the ingredient type to the correct pizza card
+     
     });
 }

@@ -11,16 +11,17 @@ class Pizza {
 
     renderPizzaCard() {
         return `
-        <div class="pizza-card">
+        <div class="pizza-card-${this.id}">
         <br>
 
         <div data-id=${this.id}
         <h3 class="card-title">${this.title}</h3>
             <p class="card-text">${this.description}</p>
 
-        <ul class="pizza-${this.id}-toppings">
+        // <ul class="pizza-${this.id}-toppings">
          
-        </ul>
+        // </ul>
+        </div>
         `
     }
 }

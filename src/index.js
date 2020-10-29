@@ -23,46 +23,14 @@ function fetchPizzas() {
         
         pizzaJson.data.forEach(pizza => {
             let newPizza = new Pizza(pizza, pizza.attributes)
+            // console.log(pizza)
+            // console.log(pizza.attributes)
 
-            console.log(newPizza)
-            
-            // let pizzaContainer = document.querySelector('#pizza-container').innerHTML
-            // pizzaContainer.renderPizzaCard()
-
+            document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard()
+            newPizza.renderLis()
         })
     })
 };
-
-//Adding objects to the DOM
-function addPizzasToTheDOM (pizzaData) {
-    //pizzaData.data.forEach(pizza => {
-
-        //debugger
-        //needs two args cuz fastjson api is nested
-        //let newPizza = new Pizza(pizza, pizza.attributes) //new instance of pizza class
-        //document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard()
-        
-    const div = document.createElement("div")
-    const pTagForTitle = document.createElement("p")
-    const pTagForDescription = document.createElement("p")
-    const button = document.createElement("button")
-
-        div.setAttribute("class", "card")
-        //div.setAttribute("data-id", pizza.id)
-        //button.setAttribute("data-id", pizza.id)
-
-        // pTagForTitle.innerText = pizza.attributes.title
-        // pTagForDescription.innerText = pizza.attributes.description
-        button.innerText = "Delete Pizza!"
-        
-        div.appendChild(pTagForTitle)
-        div.appendChild(pTagForDescription)
-        div.appendChild(button)
-        
-        const pizzaCards = document.querySelector("#pizza-cards")
-        pizzaCards.appendChild(div)
-
-    }
 
 function postRequestForPizzaForm(title, description) {
     console.log(title, description)

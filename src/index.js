@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard()
                 addPizzaToppingsToDOM(pizza)
+
+                //we need to add toppings to the pizzas
             })
         })
     };
@@ -57,7 +59,7 @@ function postRequestForPizzaForm(title, description) {
         }
 
 
-// Fetch Requests for ingredients
+//Fetch Requests for ingredients
     function fetchToppings() {
         fetch(TOPPINGS_URL) //promise
         .then((response) => response.json())
@@ -102,5 +104,21 @@ function addPizzaToppingsToDOM(pizza) {
             deleteButton.innerText = "Delete Topping"
 
             li.appendChild(deleteButton)
+
+            //EVENT LISTENER NEEDED TO DELETE TOPPING
+            deleteButton.addEventListener("click", deleteTopping)
     });
+}
+
+const deleteTopping = (event) => {
+    event.preventDefault()
+    const configObj = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+    }
+    fetch(TOPPINGS_URL + `/api/v1/${event.target.dataset.id}`, configObj) //the url might be wrong
+        .then(event.target.parentElement.remove())
 }

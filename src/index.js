@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     };
     
-function postRequestForPizzaForm(title, description) {
+function postRequestForPizzaForm(title, description, toppings) {
         const configObj = {
             method: "POST",
             headers: {
@@ -62,13 +62,15 @@ function postRequestForPizzaForm(title, description) {
         }
 
 
-//Fetch Requests for ingredients
+//Fetch Requests for ingredients but how will it be assocaited to pizza obj. we need it to have pizza_id w/it
     function fetchToppings() {
         fetch(TOPPINGS_URL) //promise
         .then((response) => response.json())
         .then((toppingJson) => {
              
             let newTopping = new Topping(toppingJson)
+
+            console.log(newTopping)
 
             })
         }
@@ -113,22 +115,24 @@ function addPizzaToppingsToDOM(pizza) {
     });
 }
 
-const deleteTopping = (event) => {
+function deleteTopping() {
     event.preventDefault()
+   
+
     const configObj = {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
-    }
+    } 
     fetch(TOPPINGS_URL + `/${event.target.dataset.id}`, configObj) //the url might be wrong... how do i see in debugger
         .then(event.target.parentElement.remove())
 }
 
 //will this topping be associated with a pizza????
 
-const addTopping = (event) => {
+function addTopping() {
 
     `<input id="input-topping2"
     type="text" 
@@ -136,7 +140,7 @@ const addTopping = (event) => {
     value="" 
     placeholder="topping 2..."
     >`
-    
+
     event.preventDefault()
     const configObj = {
         method: "POST",
@@ -144,7 +148,7 @@ const addTopping = (event) => {
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
-        body: JSON.stringify({ ingredient_name: ingredient_name }) //debugger in configobj, console..... need to add a topping to a pizza obj
+        body: JSON.stringify({  }) //debugger in configobj, console..... need to add a topping to a pizza obj
     }
         fetch(TOPPINGS_URL, configObj)
             .then(response => response.json())

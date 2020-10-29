@@ -25,7 +25,6 @@ class Pizza {
 
             </div>
             `
-        //EVENT LISTENER TO ADD PIZZA TOPPING TO PIZZA
     }
 
 }

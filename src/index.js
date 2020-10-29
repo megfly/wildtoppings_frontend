@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard()
                 addPizzaToppingsToDOM(pizza)
-                
             })
         })
     };
@@ -90,17 +89,15 @@ function addPizzaToppingsToDOM(pizza) {
         console.log(ing.ingredient_name)
 
         const ul = document.querySelector(`#pizza-${ing.pizza_id}-toppings`)
+        const ulInHTML = document.querySelector("#ul")
         let pizzaContainer = document.querySelector('#pizza-container')
         let pizzaCard = document.querySelector(`#pizza-card-${ing.pizza_id}`)
 
             const li = document.createElement('li')
-
             li.innerHTML += `<li>${ing.ingredient_name}</li>`
-
-            pizzaContainer.appendChild(li)
-
-            
         //i want to add the ingredient type to the correct pizza card
-     
+        //ulInHTML.appendChild(li)
+
+            ul.appendChild(li)
     });
 }

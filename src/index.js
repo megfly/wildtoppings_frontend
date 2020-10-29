@@ -32,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
 function postRequestForPizzaForm(title, description) {
-        console.log(title, description)
-    
         const configObj = {
             method: "POST",
             headers: {
@@ -86,7 +84,7 @@ function addPizzaToppingsToDOM(pizza) {
 
     pizza.attributes.toppings.forEach(ing => {
 
-        console.log(ing.ingredient_name)
+        //console.log(ing.ingredient_name)
 
         const ul = document.querySelector(`#pizza-${ing.pizza_id}-toppings`)
         const ulInHTML = document.querySelector("#ul")
@@ -99,5 +97,10 @@ function addPizzaToppingsToDOM(pizza) {
         //ulInHTML.appendChild(li)
 
             ul.appendChild(li)
+
+            const deleteButton = document.createElement('button')
+            deleteButton.innerText = "Delete Topping"
+
+            li.appendChild(deleteButton)
     });
 }

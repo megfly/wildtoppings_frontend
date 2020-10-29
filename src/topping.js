@@ -3,17 +3,26 @@ class Topping {
         Topping.all = []
         this.id = topping.id 
         this.ingredient_name = topping.ingredient_name
-        console.log(topping.ingredient_name)
+        //console.log(topping.ingredient_name)
         Topping.all.push(this)
     }
 
     renderToppingLi() {
-        const toppingUL = document.querySelector('#topping-ul')
-        const pizzaDivCard = document.querySelector('#pizza-card')
+        // const toppingUL = document.querySelector('#topping-ul')
+        // const pizzaDivCard = document.querySelector('#pizza-card')
+        // const li = document.createElement('li')
+        // const pizzaContainer = document.querySelector('#pizza-container')
+
+        // console.log(topping)
+
+        // li.innerText = newTopping.ingredient_name
+
+        // pizzaContainer.appendChild(li)
         
-        return `
-        <li class="topping-list">${this.ingredient_name}</li>
-        `
+        
+        // return `
+        // <li class="topping-list">${this.ingredient_name}</li>
+        // `
     }
 }
 

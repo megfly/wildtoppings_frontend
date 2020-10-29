@@ -28,7 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard()
                 addPizzaToppingsToDOM(pizza)
 
-                //we need to add toppings to the pizzas
+                //event listener to add toppings to pizzas
+                let addToppingToPizzaButton = document.querySelector('#add-topping')
+                addToppingToPizzaButton.addEventListener("click", addTopping)
+
             })
         })
     };
@@ -119,6 +122,33 @@ const deleteTopping = (event) => {
             "Accept": "application/json"
         },
     }
-    fetch(TOPPINGS_URL + `/api/v1/${event.target.dataset.id}`, configObj) //the url might be wrong
+    fetch(TOPPINGS_URL + `/${event.target.dataset.id}`, configObj) //the url might be wrong... how do i see in debugger
         .then(event.target.parentElement.remove())
+}
+
+//will this topping be associated with a pizza????
+
+const addTopping = (event) => {
+
+    `<input id="input-topping2"
+    type="text" 
+    name="topping2" 
+    value="" 
+    placeholder="topping 2..."
+    >`
+    
+    event.preventDefault()
+    const configObj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({ ingredient_name: ingredient_name }) //debugger in configobj, console..... need to add a topping to a pizza obj
+    }
+        fetch(TOPPINGS_URL, configObj)
+            .then(response => response.json())
+            .then(json => { 
+                console.log(json)
+        })
 }

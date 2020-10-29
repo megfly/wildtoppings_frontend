@@ -84,19 +84,6 @@ function pizzaFormHandler(event) {
     postRequestForPizzaForm(titleInput, descriptionInput)
 }
 
-// function addPizzaToppingsToDOM(topping) {
-
-//     topping.forEach(ing => {
-//         const ul = document.querySelector(`#pizza-${ing.pizza_id}-toppings`)
-//         let test = document.querySelector('#pizza-card')
-
-//         console.log(ing.pizza_id)
-//         console.log(`#pizza-${ing.pizza_id}-toppings`)
-
-//         test.innerHTML += `<li>${ing.ingredient_name}</li>`
-//     });
-// }
-
 function addPizzaToppingsToDOM(pizza) {
 
     console.log(pizza)
@@ -105,12 +92,16 @@ function addPizzaToppingsToDOM(pizza) {
 
         console.log(ing.ingredient_name)
 
-        const ul = document.querySelector(`#pizza-${ing.pizza_id}-toppings`)
+        //const ul = document.querySelector(`#pizza-${ing.pizza_id}-toppings`)
         let pizzaContainer = document.querySelector('#pizza-container')
         let pizzaCard = document.querySelector(`#pizza-card-${ing.pizza_id}`)
 
+            const ul = document.createElement('ul')
             const li = document.createElement('li')
+
             li.innerHTML += `<li>${ing.ingredient_name}</li>`
+
+            ul.appendChild(li)
             pizzaContainer.appendChild(li)
             
         //i want to add the ingredient type to the correct pizza card

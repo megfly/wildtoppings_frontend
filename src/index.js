@@ -144,6 +144,7 @@ function showForm() {
 };
 
 
+//POST REQUEST TO ADD TOPPING TO PIZZA
 function addTopping(ingredient_name) {
 
     event.preventDefault()

@@ -3,6 +3,7 @@ const BASE_URL = "http://localhost:3000"
 const PIZZAS_URL = `${BASE_URL}/api/v1/pizzas`
 const TOPPINGS_URL = `${BASE_URL}/api/v1/toppings`
 
+
 // DOMContent Loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log("loaded")
@@ -16,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
 })
 
-// Fetch Requests for pizzas
+
+// Fetch Request to GET pizzas
     function fetchPizzas() {
         fetch(PIZZAS_URL) //promise
         .then((response) => response.json())
@@ -24,42 +26,44 @@ document.addEventListener('DOMContentLoaded', () => {
             
             pizzaJson.data.forEach(pizza => {
                 let newPizza = new Pizza(pizza, pizza.attributes)
-                
-                document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard()
-                
-                addPizzaToppingsToDOM(pizza)
+                document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard() //go over this line
 
-                //event listener to add toppings to pizzas
+
+                //calling funtion and adding event listener to add toppings to pizzas
+                addPizzaToppingsToDOM(pizza)
                 let addToppingToPizzaButton = document.querySelector('#add-topping')
                 addToppingToPizzaButton.addEventListener("click", addTopping)
 
             })
         })
     };
+
     
-function postRequestForPizzaForm(title, description, toppings) {
+// Fetch request to POST new pizzas..........THIS ISNT WORKING Uncaught (in promise) TypeError: Cannot read property 'title' of undefined
+function postRequestForPizzaForm(title, description) {
+
         const configObj = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({
+            body: JSON.stringify ({
                 title: title,
                 description: description,
             })
         }
         fetch(PIZZAS_URL, configObj)    
             .then(response => response.json())
-            .then(pizzaJson => {
-                console.log(pizzaJson);
+            .then(pizza => {
+                console.log(pizza)
+
+                /////////////////HOW DO WE ???????????????????////////////////////
+
+                    let brandNewPizza = new Pizza(pizza, pizza.attributes) //ok 5hiw isnt wokring here
+                    document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
+                
             })
-    
-            //add the new pizza data to the DOM
-            const pizzaData = pizzaJson.data
-    
-            let newPizza = new Pizza(pizzaData, pizzaData.attributes) //new Pizza?????
-            document.querySelector('#pizza-container').innerHTML += newPizza
         }
 
 
@@ -78,54 +82,45 @@ function postRequestForPizzaForm(title, description, toppings) {
     ;
 
 
-//functions
+//function for pizza form handler
 function pizzaFormHandler(event) {
     event.preventDefault()
 
     const titleInput = document.querySelector('#input-title').value
     const descriptionInput = document.querySelector('#input-description').value
 
-    postRequestForPizzaForm(titleInput, descriptionInput)
+        postRequestForPizzaForm(titleInput, descriptionInput) //POST REQUEST GRABS TITLE INOUT VALUE AND DESCRIPTION VALUE................
 }
 
+//Adding our pizza toppings to the DOM!!!!!!!!!
 function addPizzaToppingsToDOM(pizza) {
-        
-
     pizza.attributes.toppings.forEach(ing => {
 
-        //console.log(ing.ingredient_name)
-
         const ul = document.querySelector(`#pizza-${ing.pizza_id}-toppings`)
-        const ulInHTML = document.querySelector("#ul")
-        let pizzaContainer = document.querySelector('#pizza-container')
-        let pizzaCard = document.querySelector(`#pizza-card-${ing.pizza_id}`)
 
             const li = document.createElement('li')
             li.innerHTML += `${ing.ingredient_name}`
-        //i want to add the ingredient type to the correct pizza card
-        //ulInHTML.appendChild(li)
+  
+                ul.appendChild(li)
 
-            ul.appendChild(li)
+                //Adding delete buttons to each topping
 
-            const deleteButton = document.createElement('button')
+                    const deleteButton = document.createElement('button')
 
-            //these delete buttons need a dataset 
-            
-            deleteButton.setAttribute("class", "delete-topping")
-            deleteButton.innerText = "Delete Topping"
+                    deleteButton.setAttribute("class", "delete-topping")
+                    deleteButton.setAttribute("data-id", `${ing.id}`)
+                    deleteButton.innerText = "Delete Topping"
 
-            li.appendChild(deleteButton)
+                    li.appendChild(deleteButton)
             
     });
-    document.querySelectorAll(".delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
 
-    //const findDeleteButtons = document.querySelector("#delete-topping")
-    // findDeleteButtons.forEach(btn => {
-    //     btn.addEventListener("click", deleteTopping)
-    // })
-    //query selector for each delete button and add event listener  deleteButton.addEventListener("click", deleteTopping)
+    // Finding each delete topping button and adding an event listener
+    document.querySelectorAll(".delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
 }
 
+
+//Function to DElete topping
 function deleteTopping() {
     
     event.preventDefault()
@@ -137,11 +132,10 @@ function deleteTopping() {
             "Accept": "application/json"
         },
     } 
-    fetch(TOPPINGS_URL + `/${event.target.dataset.id}`, configObj) //the url might be wrong... how do i see in debugger
+    fetch(TOPPINGS_URL + `/${event.target.dataset.id}`, configObj) //target the dataset id of the topping that is clicked
         .then(event.target.parentElement.remove())
 }
 
-//will this topping be associated with a pizza????
 
 function addTopping() {
 
@@ -168,3 +162,7 @@ function addTopping() {
                 console.log(json)
         })
 }
+
+        //const ulInHTML = document.querySelector("#ul")
+        //let pizzaContainer = document.querySelector('#pizza-container')
+        //let pizzaCard = document.querySelector(`#pizza-card-${ing.pizza_id}`)

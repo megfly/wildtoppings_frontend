@@ -1,8 +1,6 @@
 // URL's
 const BASE_URL = "http://localhost:3000"
 const PIZZAS_URL = `${BASE_URL}/api/v1/pizzas`
-const TOPPINGS_URL = `${BASE_URL}/api/v1/toppings`
-
 
 // DOMContent Loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -66,21 +64,6 @@ function postRequestForPizzaForm(title, description) {
                 
             })
         }
-
-
-//Fetch Requests for ingredients but how will it be assocaited to pizza obj. we need it to have pizza_id w/it
-    function fetchToppings() {
-        fetch(TOPPINGS_URL) //promise
-        .then((response) => response.json())
-        .then((toppingJson) => {
-             
-            let newTopping = new Topping(toppingJson)
-
-            console.log(newTopping)
-
-            })
-        }
-    ;
 
 
 //function for pizza form handler

@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 //calling funtion and adding event listener to add toppings to pizzas
                 addPizzaToppingsToDOM(pizza)
                 let addToppingToPizzaButton = document.querySelector('#add-topping')
+                addToppingToPizzaButton.addEventListener("click", showForm)
                 addToppingToPizzaButton.addEventListener("click", addTopping)
 
             })
@@ -137,15 +138,13 @@ function deleteTopping() {
 }
 
 
-function addTopping() {
+//SHOW THE ADD A TOPPING FORM WHEN ITS CLICKED
+function showForm() {
+    document.getElementById('add-a-topping-form').style.display = 'block'
+};
 
-    `<form id="create-pizza-form">
-    <input id="input-topping2"
-    type="text" 
-    name="topping2" 
-    value="" 
-    placeholder="topping 2...">
-    </form>`
+
+function addTopping(ingredient_name) {
 
     event.preventDefault()
     const configObj = {
@@ -154,9 +153,11 @@ function addTopping() {
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
-        body: JSON.stringify({  }) //debugger in configobj, console..... need to add a topping to a pizza obj
+        body: JSON.stringify({ 
+            ingredient_name: ingredient_name
+         }) //debugger in configobj, console..... need to add a topping to a pizza obj
     }
-        fetch(TOPPINGS_URL, configObj)
+        fetch(TOPPINGS_URL + `/${event.target.dataset.id}`, configObj)
             .then(response => response.json())
             .then(json => { 
                 console.log(json)

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchPizzas()
     fetchToppings()
 
-        // Event Listeners
+        // CREATE A NEW PIZZA EVENT LISTENER
         const createPizzaForm = document.querySelector('#create-pizza-form')
         createPizzaForm.addEventListener("submit", (event) => {
             pizzaFormHandler(event)
@@ -31,25 +31,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard() //go over this line
 
 
-                //calling funtion and adding event listener to add toppings to pizzas
+                //Add Pizzas to the DOM!!!
                 addPizzaToppingsToDOM(pizza)
-                let addToppingToPizzaButton = document.querySelector('#add-topping', `${this}.attr("data-id")`) 
-                addToppingToPizzaButton.addEventListener("click", showForm)
 
-                //Do we need to target the dataid of this one????????????
-                let addToppingToPizzaSubmitButton = document.querySelector('#add-a-topping-btn', `${this}.attr("data-id")`)
+                //so pizzas on the dom and now we want to be able to ADD TOPPINGS!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                //how do we target the specific dataset button....
+                let addToppingToPizzaSubmitButton = document.querySelector('#add-a-topping-btn')
+                //this is the last debugger....it never reaaches the toppingformhandler
                 addToppingToPizzaSubmitButton.addEventListener("submit", (event) => {
                     debugger
                     toppingFormHandler(event)
                 })
-
             })
         })
     };
 
+
     
-// Fetch request to POST new pizzas..........THIS ISNT WORKING Uncaught (in promise) TypeError: Cannot read property 'title' of undefined
+// Fetch request to POST new pizzas
 function postRequestForPizzaForm(title, description) {
+    event.preventDefault()
+
+    //THIS IS FREEZING AFTER I CREATE A PIZZA
 
         const configObj = {
             method: "POST",
@@ -66,17 +70,16 @@ function postRequestForPizzaForm(title, description) {
             .then(response => response.json())
             .then(pizza => {
         
-                    let brandNewPizza = new Pizza(pizza, pizza.data.attributes) //ok 5hiw isnt wokring here
+                    let brandNewPizza = new Pizza(pizza, pizza.data.attributes)
                     
                     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
-
-                    console.log(brandNewPizza)
                 
             })
         }
 
 
-//Fetch Requests for ingredients but how will it be assocaited to pizza obj. we need it to have pizza_id w/it
+
+//Fetch Requests for ingredients .............. currently not using this
     function fetchToppings() {
         fetch(TOPPINGS_URL) //promise
         .then((response) => response.json())
@@ -89,29 +92,30 @@ function postRequestForPizzaForm(title, description) {
     ;
 
 
+
+
 //function for pizza form handler
 function pizzaFormHandler(event) {
-    debugger
+
     event.preventDefault()
 
-    const titleInput = document.querySelector('#input-title').value
+    const titleInput = document.querySelector('#input-title').value //grabs input value
     const descriptionInput = document.querySelector('#input-description').value
 
-        postRequestForPizzaForm(titleInput, descriptionInput) //POST REQUEST GRABS INPUT VALUE................
-
-        //want the form to clear after submitting
+        postRequestForPizzaForm(titleInput, descriptionInput)
 }
+
+
+
 
 //TOPPING FORM HANDLER
 function toppingFormHandler(event) {
     event.preventDefault()
-
-    //need to find the #input-topping by the data-id???????????????????????????????????????????????
-
     const toppingInput = document.querySelector('#input-topping').value
 
         postRequestForToppingForm(toppingInput) //POST REQUEST GRABS INPUT VALUE................
 }
+
 
 
 //Adding our pizza toppings to the DOM!!!!!!!!!
@@ -139,7 +143,9 @@ function addPizzaToppingsToDOM(pizza) {
 
     // Finding each delete topping button and adding an event listener
     document.querySelectorAll(".delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
+    document.querySelectorAll("#add-topping").forEach(btn => btn.addEventListener('click', showForm))
 }
+
 
 
 //Function to DElete topping
@@ -159,9 +165,9 @@ function deleteTopping() {
 }
 
 
+
 //POST REQUEST TO ADD TOPPING TO PIZZA
 function postRequestForToppingForm(ingredient_name) {
-    debugger
 
     event.preventDefault()
     const configObj = {
@@ -178,6 +184,7 @@ function postRequestForToppingForm(ingredient_name) {
             .then(response => response.json())
             .then(json => { 
                 console.log(json)
+                
 
                 //so then we add the topping to the pizzacard
 

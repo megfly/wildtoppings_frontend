@@ -1,6 +1,8 @@
 // URL's
 const BASE_URL = "http://localhost:3000"
 const PIZZAS_URL = `${BASE_URL}/api/v1/pizzas`
+const TOPPINGS_URL = `${BASE_URL}/api/v1/toppings`
+
 
 // DOMContent Loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -31,7 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 addPizzaToppingsToDOM(pizza)
                 let addToppingToPizzaButton = document.querySelector('#add-topping')
                 addToppingToPizzaButton.addEventListener("click", showForm)
-                addToppingToPizzaButton.addEventListener("click", addTopping)
+                addToppingToPizzaButton.addEventListener("submit", (event) => {
+                    toppingFormHandler(event)
+                })
 
             })
         })
@@ -66,6 +70,19 @@ function postRequestForPizzaForm(title, description) {
         }
 
 
+//Fetch Requests for ingredients but how will it be assocaited to pizza obj. we need it to have pizza_id w/it
+    function fetchToppings() {
+        fetch(TOPPINGS_URL) //promise
+        .then((response) => response.json())
+        .then((toppingJson) => {
+             
+            let newTopping = new Topping(toppingJson)
+
+            })
+        }
+    ;
+
+
 //function for pizza form handler
 function pizzaFormHandler(event) {
     event.preventDefault()
@@ -75,6 +92,16 @@ function pizzaFormHandler(event) {
 
         postRequestForPizzaForm(titleInput, descriptionInput) //POST REQUEST GRABS TITLE INOUT VALUE AND DESCRIPTION VALUE................
 }
+
+//TOPPING FORM HANDLER
+function toppingFormHandler(event) {
+    event.preventDefault()
+
+    const toppingInput = document.querySelector('#input-topping').value
+
+    postRequestForToppingForm(toppingInput) //POST REQUEST GRABS INPUT VALUE................
+}
+
 
 //Adding our pizza toppings to the DOM!!!!!!!!!
 function addPizzaToppingsToDOM(pizza) {
@@ -128,7 +155,8 @@ function showForm() {
 
 
 //POST REQUEST TO ADD TOPPING TO PIZZA
-function addTopping(ingredient_name) {
+function postRequestForToppingForm(ingredient_name) {
+    debugger
 
     event.preventDefault()
     const configObj = {

@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let newPizza = new Pizza(pizza, pizza.attributes)
                 
                 document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard()
+                
                 addPizzaToppingsToDOM(pizza)
 
                 //event listener to add toppings to pizzas
@@ -88,6 +89,7 @@ function pizzaFormHandler(event) {
 }
 
 function addPizzaToppingsToDOM(pizza) {
+        
 
     pizza.attributes.toppings.forEach(ing => {
 
@@ -99,25 +101,34 @@ function addPizzaToppingsToDOM(pizza) {
         let pizzaCard = document.querySelector(`#pizza-card-${ing.pizza_id}`)
 
             const li = document.createElement('li')
-            li.innerHTML += `<li>${ing.ingredient_name}</li>`
+            li.innerHTML += `${ing.ingredient_name}`
         //i want to add the ingredient type to the correct pizza card
         //ulInHTML.appendChild(li)
 
             ul.appendChild(li)
 
             const deleteButton = document.createElement('button')
+
+            //these delete buttons need a dataset 
+            
+            deleteButton.setAttribute("class", "delete-topping")
             deleteButton.innerText = "Delete Topping"
 
             li.appendChild(deleteButton)
-
-            //EVENT LISTENER NEEDED TO DELETE TOPPING
-            deleteButton.addEventListener("click", deleteTopping)
+            
     });
+    document.querySelectorAll(".delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
+
+    //const findDeleteButtons = document.querySelector("#delete-topping")
+    // findDeleteButtons.forEach(btn => {
+    //     btn.addEventListener("click", deleteTopping)
+    // })
+    //query selector for each delete button and add event listener  deleteButton.addEventListener("click", deleteTopping)
 }
 
 function deleteTopping() {
+    
     event.preventDefault()
-   
 
     const configObj = {
         method: "DELETE",
@@ -134,12 +145,13 @@ function deleteTopping() {
 
 function addTopping() {
 
-    `<input id="input-topping2"
+    `<form id="create-pizza-form">
+    <input id="input-topping2"
     type="text" 
     name="topping2" 
     value="" 
-    placeholder="topping 2..."
-    >`
+    placeholder="topping 2...">
+    </form>`
 
     event.preventDefault()
     const configObj = {

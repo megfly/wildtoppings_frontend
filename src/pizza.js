@@ -1,5 +1,6 @@
 class Pizza {
     constructor(pizza, pizzaAttributes) {
+        //debugger
         Pizza.all = []
 
         this.id = pizza.id

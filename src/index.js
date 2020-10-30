@@ -4,6 +4,7 @@ const PIZZAS_URL = `${BASE_URL}/api/v1/pizzas`
 const TOPPINGS_URL = `${BASE_URL}/api/v1/toppings`
 
 
+
 // DOMContent Loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log("loaded")
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pizzaFormHandler(event)
         })
 })
+
 
 
 // Fetch Request to GET pizzas
@@ -31,9 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //calling funtion and adding event listener to add toppings to pizzas
                 addPizzaToppingsToDOM(pizza)
-                let addToppingToPizzaButton = document.querySelector('#add-topping')
+                let addToppingToPizzaButton = document.querySelector('#add-topping', `${this}.attr("data-id")`) 
                 addToppingToPizzaButton.addEventListener("click", showForm)
-                addToppingToPizzaButton.addEventListener("submit", (event) => {
+
+                //Do we need to target the dataid of this one????????????
+                let addToppingToPizzaSubmitButton = document.querySelector('#add-a-topping-btn', `${this}.attr("data-id")`)
+                addToppingToPizzaSubmitButton.addEventListener("submit", (event) => {
+                    debugger
                     toppingFormHandler(event)
                 })
 
@@ -59,12 +65,12 @@ function postRequestForPizzaForm(title, description) {
         fetch(PIZZAS_URL, configObj)    
             .then(response => response.json())
             .then(pizza => {
-                console.log(pizza)
-
-                /////////////////HOW DO WE ???????????????????////////////////////
-
-                    let brandNewPizza = new Pizza(pizza, pizza.attributes) //ok 5hiw isnt wokring here
+        
+                    let brandNewPizza = new Pizza(pizza, pizza.data.attributes) //ok 5hiw isnt wokring here
+                    
                     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
+
+                    console.log(brandNewPizza)
                 
             })
         }
@@ -85,21 +91,26 @@ function postRequestForPizzaForm(title, description) {
 
 //function for pizza form handler
 function pizzaFormHandler(event) {
+    debugger
     event.preventDefault()
 
     const titleInput = document.querySelector('#input-title').value
     const descriptionInput = document.querySelector('#input-description').value
 
-        postRequestForPizzaForm(titleInput, descriptionInput) //POST REQUEST GRABS TITLE INOUT VALUE AND DESCRIPTION VALUE................
+        postRequestForPizzaForm(titleInput, descriptionInput) //POST REQUEST GRABS INPUT VALUE................
+
+        //want the form to clear after submitting
 }
 
 //TOPPING FORM HANDLER
 function toppingFormHandler(event) {
     event.preventDefault()
 
+    //need to find the #input-topping by the data-id???????????????????????????????????????????????
+
     const toppingInput = document.querySelector('#input-topping').value
 
-    postRequestForToppingForm(toppingInput) //POST REQUEST GRABS INPUT VALUE................
+        postRequestForToppingForm(toppingInput) //POST REQUEST GRABS INPUT VALUE................
 }
 
 
@@ -148,12 +159,6 @@ function deleteTopping() {
 }
 
 
-//SHOW THE ADD A TOPPING FORM WHEN ITS CLICKED
-function showForm() {
-    document.getElementById('add-a-topping-form').style.display = 'block'
-};
-
-
 //POST REQUEST TO ADD TOPPING TO PIZZA
 function postRequestForToppingForm(ingredient_name) {
     debugger
@@ -173,9 +178,20 @@ function postRequestForToppingForm(ingredient_name) {
             .then(response => response.json())
             .then(json => { 
                 console.log(json)
+
+                //so then we add the topping to the pizzacard
+
+                // let brandNewPizza = new Pizza(pizza, pizza.attributes) //ok 5hiw isnt wokring here
+                //     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
         })
 }
 
+
+
+//SHOW THE ADD A TOPPING FORM WHEN ITS CLICKED
+function showForm() {
+    document.getElementById('add-a-topping-form').style.display = 'block'
+};
         //const ulInHTML = document.querySelector("#ul")
         //let pizzaContainer = document.querySelector('#pizza-container')
         //let pizzaCard = document.querySelector(`#pizza-card-${ing.pizza_id}`)

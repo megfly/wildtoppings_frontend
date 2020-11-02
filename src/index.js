@@ -1,3 +1,6 @@
+//CREATE PIZZA POST REQUEST IS FREEZING AND I HAVE TO PRESS RELOAD TO GET IT TO WORK
+//ADD TOPPING BUTTON ISNT WORKING- I THINK I HAVE TO GRAB IT BY THE DATA ID BUT IM HAVING TROUBLE WITH FINDING HOW TO GRAB IT
+
 // URL's
 const BASE_URL = "http://localhost:3000"
 const PIZZAS_URL = `${BASE_URL}/api/v1/pizzas`
@@ -30,20 +33,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 let newPizza = new Pizza(pizza, pizza.attributes)
                 document.querySelector('#pizza-container').innerHTML += newPizza.renderPizzaCard() //go over this line
 
-
                 //Add Pizzas to the DOM!!!
                 addPizzaToppingsToDOM(pizza)
 
-                //so pizzas on the dom and now we want to be able to ADD TOPPINGS!!!!!!!!!!!!!!!!!!!!!!!!!!
+            })
 
+                //so pizzas on the dom and now we want to be able to ADD TOPPINGS!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //how do we target the specific dataset button....
-                let addToppingToPizzaSubmitButton = document.querySelector('#add-a-topping-btn')
+                let addToppingToPizzaSubmitButton = document.querySelector('#add-a-topping-btn') ///////////////////////
+                let addToppingToPizzaSubmitButtonDataID = addToppingToPizzaSubmitButton.getAttribute('data-id')
+
+                
+                
                 //this is the last debugger....it never reaaches the toppingformhandler
                 addToppingToPizzaSubmitButton.addEventListener("submit", (event) => {
                     debugger
                     toppingFormHandler(event)
                 })
-            })
+
         })
     };
 
@@ -73,6 +80,8 @@ function postRequestForPizzaForm(title, description) {
                     let brandNewPizza = new Pizza(pizza, pizza.data.attributes)
                     
                     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
+
+                    console.log(brandNewPizza)
                 
             })
         }
@@ -143,7 +152,7 @@ function addPizzaToppingsToDOM(pizza) {
 
     // Finding each delete topping button and adding an event listener
     document.querySelectorAll(".delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
-    document.querySelectorAll("#add-topping").forEach(btn => btn.addEventListener('click', showForm))
+    document.querySelectorAll("#add-topping", `$(this).data('id')`).forEach(btn => btn.addEventListener('click', showForm))
 }
 
 
@@ -198,6 +207,7 @@ function postRequestForToppingForm(ingredient_name) {
 //SHOW THE ADD A TOPPING FORM WHEN ITS CLICKED
 function showForm() {
     document.getElementById('add-a-topping-form').style.display = 'block'
+    //debugger
 };
         //const ulInHTML = document.querySelector("#ul")
         //let pizzaContainer = document.querySelector('#pizza-container')

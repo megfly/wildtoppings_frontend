@@ -19,27 +19,27 @@ class Pizza {
                 <h2 class="card-title">${this.title}</h2>
                     <p class="card-text">${this.description}</p>
 
-                    <button id="add-topping" onclick="showForm()" data-id="${this.id}">Add Topping!</button>
+                            <button id="add-topping" onclick="showForm()" data-id="${this.id}">Add Topping!</button>
 
-                    <form id="add-a-topping-form" data-id=${this.id} style="display: none;">
-                        <h3>Add Topping!</h3>
-                        <input id="input-topping"
-                        data-id=${this.id}
-                        type="text" 
-                        name="topping" 
-                        value="" 
-                        placeholder="topping..">
-                        <br>
-                            <br>
-                            <input id="add-a-topping-btn"
-                            data-id=${this.id}
-                            type="submit"
-                            name="submit"
-                            value="Submit!"
-                            class="submit"
-                        />
-                        <br><br>
-                    </form>
+                            <form id="add-a-topping-form" style="display: none;">
+                                <h3>Add Topping!</h3>
+                                <input id="input-topping"
+                                data-id=${this.id}
+                                type="text" 
+                                name="topping" 
+                                value="" 
+                                placeholder="topping..">
+                                <br>
+                                    <br>
+                                    <input id="add-a-topping-btn"
+                                    data-id=${this.id}
+                                    type="submit"
+                                    name="submit"
+                                    value="Submit!"
+                                    class="submit"
+                                />
+                                <br><br>
+                            </form>
 
             <ul id="pizza-${this.id}-toppings">
             </ul>

@@ -3,17 +3,27 @@
     //steps for add a topping....
         //1. under addpizzatoppingstothedom() 
             //document.querySelectorAll("#add-topping".forEach(btn => btn.addEventListener('click', showForm))
+
         //2. then we go to the showform function - this just shows the form
             //function showForm() {document.getElementById('add-a-topping-form').style.display = 'block'
+
         //3. then under fetchpizzas() which is a pizza get request we have event listeners attached to the add topping submit button
+
             //let addToppingToPizzaSubmitButton = document.querySelector('#add-a-topping-btn')
             //let addToppingToPizzaSubmitButtonDataId = addToppingToPizzaSubmitButton.getAttribute('data-id')
+
+            //SUBMIT EVENT OON FORM
+
             //addToppingToPizzaSubmitButton.addEventListener("submit", (event) => {toppingFormHandler(event)})
+
+
         //4. Then it goes to the toppingformhandler
             //function toppingFormHandler(event) {
                 //event.preventDefault()
                 //const toppingInput = document.querySelector('#input-topping').value
                 //postRequestForToppingForm(toppingInput) //POST REQUEST GRABS INPUT VALUE................
+
+                
         //5. Next it goes to post request for topping form
         //6. lastly we will then want to add it to the dom
 
@@ -59,20 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             })
 
-                //so pizzas on the dom and now we want to be able to ADD TOPPINGS!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //how do we target the specific dataset button....
-                let addToppingToPizzaSubmitButton = document.querySelector('#add-a-topping-btn')
-                let addToppingToPizzaSubmitButtonDataId = addToppingToPizzaSubmitButton.getAttribute('data-id')
-                ///////////////////////
+                let addToppingToPizzaForm = document.querySelector('#add-a-topping-form')
 
-                ////////////////var element = document.getElementById('myDivID');
-                //////////////var dataID = element.getAttribute('data-id');
-
-
-                
-                //this is the last debugger....it never reaaches the toppingformhandler
-                addToppingToPizzaSubmitButton.addEventListener("submit", (event) => {
-                    debugger
+                addToppingToPizzaForm.addEventListener("submit", (event) => {
+                    console.log('PIZZZZZZZAAAAAAAAAAA')
                     toppingFormHandler(event)
                 })
 
@@ -223,8 +223,8 @@ function postRequestForToppingForm(ingredient_name) {
 
                 //so then we add the topping to the pizzacard
 
-                // let brandNewPizza = new Pizza(pizza, pizza.attributes) //ok 5hiw isnt wokring here
-                //     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
+                // let brandNewPizzaTopping = new Topping(topping, topping.attributes) //ok 5hiw isnt wokring here
+                // document.querySelector('#pizza-container').innerHTML += brandNewPizzaTopping.renderPizzaCard()
         })
 }
 

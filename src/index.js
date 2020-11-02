@@ -1,5 +1,25 @@
-//CREATE PIZZA POST REQUEST IS FREEZING AND I HAVE TO PRESS RELOAD TO GET IT TO WORK
+
 //ADD TOPPING BUTTON ISNT WORKING- I THINK I HAVE TO GRAB IT BY THE DATA ID BUT IM HAVING TROUBLE WITH FINDING HOW TO GRAB IT
+    //steps for add a topping....
+        //1. under addpizzatoppingstothedom() 
+            //document.querySelectorAll("#add-topping".forEach(btn => btn.addEventListener('click', showForm))
+        //2. then we go to the showform function - this just shows the form
+            //function showForm() {document.getElementById('add-a-topping-form').style.display = 'block'
+        //3. then under fetchpizzas() which is a pizza get request we have event listeners attached to the add topping submit button
+            //let addToppingToPizzaSubmitButton = document.querySelector('#add-a-topping-btn')
+            //let addToppingToPizzaSubmitButtonDataId = addToppingToPizzaSubmitButton.getAttribute('data-id')
+            //addToppingToPizzaSubmitButton.addEventListener("submit", (event) => {toppingFormHandler(event)})
+        //4. Then it goes to the toppingformhandler
+            //function toppingFormHandler(event) {
+                //event.preventDefault()
+                //const toppingInput = document.querySelector('#input-topping').value
+                //postRequestForToppingForm(toppingInput) //POST REQUEST GRABS INPUT VALUE................
+        //5. Next it goes to post request for topping form
+        //6. lastly we will then want to add it to the dom
+
+
+//create a pizza action is freezing
+
 
 // URL's
 const BASE_URL = "http://localhost:3000"
@@ -13,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("loaded")
     fetchPizzas()
     fetchToppings()
+
 
         // CREATE A NEW PIZZA EVENT LISTENER
         const createPizzaForm = document.querySelector('#create-pizza-form')
@@ -40,10 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //so pizzas on the dom and now we want to be able to ADD TOPPINGS!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //how do we target the specific dataset button....
-                let addToppingToPizzaSubmitButton = document.querySelector('#add-a-topping-btn') ///////////////////////
-                let addToppingToPizzaSubmitButtonDataID = addToppingToPizzaSubmitButton.getAttribute('data-id')
+                let addToppingToPizzaSubmitButton = document.querySelector('#add-a-topping-btn')
+                let addToppingToPizzaSubmitButtonDataId = addToppingToPizzaSubmitButton.getAttribute('data-id')
+                ///////////////////////
 
-                
+                ////////////////var element = document.getElementById('myDivID');
+                //////////////var dataID = element.getAttribute('data-id');
+
+
                 
                 //this is the last debugger....it never reaaches the toppingformhandler
                 addToppingToPizzaSubmitButton.addEventListener("submit", (event) => {
@@ -152,7 +177,8 @@ function addPizzaToppingsToDOM(pizza) {
 
     // Finding each delete topping button and adding an event listener
     document.querySelectorAll(".delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
-    document.querySelectorAll("#add-topping", `$(this).data('id')`).forEach(btn => btn.addEventListener('click', showForm))
+    /////////////////////////////////////////////////////
+    document.querySelectorAll("#add-topping").forEach(btn => btn.addEventListener('click', showForm)) //`$(this).data('id')`
 }
 
 

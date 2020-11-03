@@ -16,14 +16,14 @@
 
             //addToppingToPizzaSubmitButton.addEventListener("submit", (event) => {toppingFormHandler(event)})
 
-
+//TOPPINGS/UNDEFINED
         //4. Then it goes to the toppingformhandler
             //function toppingFormHandler(event) {
                 //event.preventDefault()
                 //const toppingInput = document.querySelector('#input-topping').value
                 //postRequestForToppingForm(toppingInput) //POST REQUEST GRABS INPUT VALUE................
 
-                
+
         //5. Next it goes to post request for topping form
         //6. lastly we will then want to add it to the dom
 
@@ -145,7 +145,10 @@ function pizzaFormHandler(event) {
 //TOPPING FORM HANDLER
 function toppingFormHandler(event) {
     event.preventDefault()
-    const toppingInput = document.querySelector('#input-topping').value
+
+    //do i need to grab the data id?? /////////////////////////////////////////////////////
+
+    const toppingInput = document.querySelector('#input-topping').value //grabs input value
 
         postRequestForToppingForm(toppingInput) //POST REQUEST GRABS INPUT VALUE................
 }
@@ -177,8 +180,7 @@ function addPizzaToppingsToDOM(pizza) {
 
     // Finding each delete topping button and adding an event listener
     document.querySelectorAll(".delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
-    /////////////////////////////////////////////////////
-    document.querySelectorAll("#add-topping").forEach(btn => btn.addEventListener('click', showForm)) //`$(this).data('id')`
+    document.querySelectorAll("#add-topping").forEach(btn => btn.addEventListener('click', showForm)) 
 }
 
 
@@ -203,7 +205,7 @@ function deleteTopping() {
 
 //POST REQUEST TO ADD TOPPING TO PIZZA
 function postRequestForToppingForm(ingredient_name) {
-
+//debugger
     event.preventDefault()
     const configObj = {
         method: "POST",
@@ -212,10 +214,13 @@ function postRequestForToppingForm(ingredient_name) {
             "Accept": "application/json"
         },
         body: JSON.stringify({ 
-            ingredient_name: ingredient_name
-         }) //debugger in configobj, console..... need to add a topping to a pizza obj
+            //need a way to have foreign id to associate it with a current pizza
+            //connect to pizza with dropdown, or through show page,.... 
+            //https://stackoverflow.com/questions/16699877/rails-optional-belongs-to
+            ingredient_name: ingredient_name,
+         }) //so does this need to be api/v1/pizza/:id/topping/:id???
     }
-        fetch(TOPPINGS_URL + `/${event.target.dataset.id}`, configObj)
+        fetch(TOPPINGS_URL, configObj)
             .then(response => response.json())
             .then(json => { 
                 console.log(json)
@@ -233,8 +238,4 @@ function postRequestForToppingForm(ingredient_name) {
 //SHOW THE ADD A TOPPING FORM WHEN ITS CLICKED
 function showForm() {
     document.getElementById('add-a-topping-form').style.display = 'block'
-    //debugger
 };
-        //const ulInHTML = document.querySelector("#ul")
-        //let pizzaContainer = document.querySelector('#pizza-container')
-        //let pizzaCard = document.querySelector(`#pizza-card-${ing.pizza_id}`)

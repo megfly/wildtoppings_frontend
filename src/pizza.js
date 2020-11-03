@@ -11,6 +11,7 @@ class Pizza {
     }
 
     renderPizzaCard() {
+        //debugger
             return `
             <div class="pizza-card-${this.id}">
             <br>
@@ -21,7 +22,7 @@ class Pizza {
 
                             <button id="add-topping" onclick="showForm()" data-id="${this.id}">Add Topping!</button>
 
-                                <form id="add-a-topping-form"  style="display: none;">
+                                <form id="add-a-topping-form" data-id="${this.id}" style="display: none;">
                                     <h3>Add Topping!</h3>
                                     <input id="input-topping"
                                     data-id=${this.id}

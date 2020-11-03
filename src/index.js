@@ -58,12 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 addPizzaToppingsToDOM(pizza)
                 getPizzasForDropdown(pizza)
 
+                // let addToppingToPizzaForm = document.querySelector(`#add-a-topping-form`)
+                // addToppingToPizzaForm.setAttribute("data-id", `${pizza.id}`)
+
             })
 
-                let addToppingToPizzaForm = document.querySelector(`#add-a-topping-form`)
-                
-
-                addToppingToPizzaForm.addEventListener("submit", (event) => {
+                let findAddToppingToPizzaForm = document.querySelector(`#add-a-topping-form`)
+                findAddToppingToPizzaForm.addEventListener("submit", (event) => {
                     toppingFormHandler(event)
                 })
         })
@@ -138,15 +139,16 @@ function pizzaFormHandler(event) {
 function toppingFormHandler(event) {
     event.preventDefault()
 
-    //do i need to grab the data id?? /////////////////////////////////////////////////////
-
     const toppingInput = document.querySelector('#input-topping').value //grabs input value
-    const pizzaId = parseInt(document.querySelector(`#option`).dataset.id) //category input into an integer
+
+    /////////////////////////////////////////////////////////////////////////////////////THIS ISNT GETTING CORRECT DATAID
+
+    let pizza_id = parseInt(document.querySelector(`#option`).dataset.id) 
 
     //${event.target.dataset.id}`
     
 
-        postRequestForToppingForm(toppingInput, pizzaId) //POST REQUEST GRABS INPUT VALUE................
+        postRequestForToppingForm(toppingInput, pizza_id)
 }
 
 
@@ -200,7 +202,7 @@ function deleteTopping() {
 
 
 //POST REQUEST TO ADD TOPPING TO PIZZA
-function postRequestForToppingForm(ingredient_name) {
+function postRequestForToppingForm(ingredient_name, pizza_id) {
 //debugger
     event.preventDefault()
     const configObj = {
@@ -210,17 +212,17 @@ function postRequestForToppingForm(ingredient_name) {
             "Accept": "application/json"
         },
         body: JSON.stringify({ 
-            //need a way to have foreign id to associate it with a current pizza
-            //connect to pizza with dropdown, or through show page,.... 
-            //https://stackoverflow.com/questions/16699877/rails-optional-belongs-to
             ingredient_name: ingredient_name,
-            //pizza_id: pizza_id
-         }) //so does this need to be api/v1/pizza/:id/topping/:id???
+            pizza_id: pizza_id
+         })
     }
+    debugger //IDK IF IM FETCHING THE CORRECT URL....... route goes to toppings create action .....and we have a pizza id.........but then
         fetch(TOPPINGS_URL, configObj)
             .then(response => response.json())
             .then(json => { 
                 console.log(json)
+
+                debugger
                 
 
                 //so then we add the topping to the pizzacard
@@ -234,7 +236,7 @@ function postRequestForToppingForm(ingredient_name) {
 
 //SHOW THE ADD A TOPPING FORM WHEN ITS CLICKED
 function showForm() {
-    document.getElementById(`add-a-topping-form`).style.display = 'block'
+    document.getElementById(`add-a-topping-form`).style.display = "block"
 };
 
 function getPizzasForDropdown(pizza) {

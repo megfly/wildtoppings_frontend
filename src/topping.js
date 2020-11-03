@@ -1,9 +1,10 @@
 class Topping {
-    constructor(topping) {
+    constructor(topping, toppingAttributes) {
+        //debugger
         Topping.all = []
         this.id = topping.id 
-        this.pizza_id = topping.pizza_id
-        this.ingredient_name = topping.ingredient_name
+        this.pizza_id = toppingAttributes.pizza_id
+        this.ingredient_name = toppingAttributes.ingredient_name
         Topping.all.push(this)
     }
 }

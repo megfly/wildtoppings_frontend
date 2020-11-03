@@ -66,21 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //Add Pizzas to the DOM!!!
                 addPizzaToppingsToDOM(pizza)
+                getPizzasForDropdown(pizza)
 
             })
 
-                let addToppingToPizzaForm = document.querySelector('#add-a-topping-form')
+                let addToppingToPizzaForm = document.querySelector(`#add-a-topping-form`)
+                
 
                 addToppingToPizzaForm.addEventListener("submit", (event) => {
                     toppingFormHandler(event)
                 })
-                //document.querySelectorAll("#add-topping").forEach(btn => btn.addEventListener('click', showForm)) 
-                let pizzaDropdownSelectionList = document.querySelector("#pizza-list")
-                pizzaDropdownSelectionList.addEventListener("click", (event) => {
-                    getPizzasForDropdown(event)
-                    console.log(pizza)
-                });
-
         })
     };
 
@@ -242,14 +237,22 @@ function postRequestForToppingForm(ingredient_name) {
 
 //SHOW THE ADD A TOPPING FORM WHEN ITS CLICKED
 function showForm() {
-    document.getElementById('add-a-topping-form').style.display = 'block'
+    document.getElementById(`add-a-topping-form`).style.display = 'block'
 };
 
-function getPizzasForDropdown(event) {
-    //now we need to get options list
-    //iterate over our pizza titles!!!!!!
-    //append them to the options list
+function getPizzasForDropdown(pizza) {
+    console.log(pizza)
+    const pizzaSelectList = document.querySelector('#pizza-list')
+    let myOption = document.createElement("option")
 
-    document.querySelector('#pizza-list')
+    pizzaSelectList.appendChild(myOption)
+    
+
+
+    // //loop for each pizza
+
+    // myOption = document.createElement("option");
+    // myOption.innerHTML = this.text 
+    // pizzaSelect.appendChild(myOption);
 
 }

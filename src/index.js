@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const createPizzaForm = document.querySelector('#create-pizza-form')
         createPizzaForm.addEventListener("submit", (event) => {
             pizzaFormHandler(event)
-        })
+        });
 })
 
 
@@ -72,9 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 let addToppingToPizzaForm = document.querySelector('#add-a-topping-form')
 
                 addToppingToPizzaForm.addEventListener("submit", (event) => {
-                    console.log('PIZZZZZZZAAAAAAAAAAA')
                     toppingFormHandler(event)
                 })
+                //document.querySelectorAll("#add-topping").forEach(btn => btn.addEventListener('click', showForm)) 
+                let pizzaDropdownSelectionList = document.querySelector("#pizza-list")
+                pizzaDropdownSelectionList.addEventListener("click", (event) => {
+                    getPizzasForDropdown(event)
+                    console.log(pizza)
+                });
 
         })
     };
@@ -239,3 +244,12 @@ function postRequestForToppingForm(ingredient_name) {
 function showForm() {
     document.getElementById('add-a-topping-form').style.display = 'block'
 };
+
+function getPizzasForDropdown(event) {
+    //now we need to get options list
+    //iterate over our pizza titles!!!!!!
+    //append them to the options list
+
+    document.querySelector('#pizza-list')
+
+}

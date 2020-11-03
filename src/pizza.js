@@ -21,20 +21,20 @@ class Pizza {
 
                             <button id="add-topping" onclick="showForm()" data-id="${this.id}">Add Topping!</button>
 
-                            <form id="add-a-topping-form" style="display: none;">
-                                <h3>Add Topping!</h3>
-                                <input id="input-topping"
-                                data-id=${this.id}
-                                type="text" 
-                                name="topping" 
-                                value="" 
-                                placeholder="topping..">
+                                <form id="add-a-topping-form" data-id=${this.id} style="display: none;">
+                                    <h3>Add Topping!</h3>
+                                    <input id="input-topping"
+                                    data-id=${this.id}
+                                    type="text" 
+                                    name="topping" 
+                                    value="" 
+                                    placeholder="topping..">
                                 <br>
                                     <br>
 
 
-                                    <select id="pizza-list" data-id=${this.id}>
-                                    <option placeholder="pizza..." value="">
+                                            <select id="pizza-list-${this.id}" data-id=${this.id}>
+                                            <option placeholder="pizza..." value="">
                                     
                                     </option>
                                     </select>

@@ -218,6 +218,7 @@ function postRequestForToppingForm(ingredient_name) {
             //connect to pizza with dropdown, or through show page,.... 
             //https://stackoverflow.com/questions/16699877/rails-optional-belongs-to
             ingredient_name: ingredient_name,
+            pizza_id: pizza_id
          }) //so does this need to be api/v1/pizza/:id/topping/:id???
     }
         fetch(TOPPINGS_URL, configObj)
@@ -242,17 +243,14 @@ function showForm() {
 
 function getPizzasForDropdown(pizza) {
     console.log(pizza)
+    
     const pizzaSelectList = document.querySelector('#pizza-list')
-    let myOption = document.createElement("option")
-
-    pizzaSelectList.appendChild(myOption)
     
 
+    let myOption = document.createElement("option")
+    myOption.setAttribute("data-id", `${pizza.id}`)
+    myOption.innerHTML += `${pizza.attributes.title}`
 
-    // //loop for each pizza
-
-    // myOption = document.createElement("option");
-    // myOption.innerHTML = this.text 
-    // pizzaSelect.appendChild(myOption);
+    pizzaSelectList.appendChild(myOption)
 
 }

@@ -125,6 +125,8 @@ function pizzaFormHandler(event) {
 
     const titleInput = document.querySelector('#input-title').value //grabs input value
     const descriptionInput = document.querySelector('#input-description').value
+    //debugger
+    //this pizzaid is undefined........
 
         postRequestForPizzaForm(titleInput, descriptionInput)
 }
@@ -139,8 +141,12 @@ function toppingFormHandler(event) {
     //do i need to grab the data id?? /////////////////////////////////////////////////////
 
     const toppingInput = document.querySelector('#input-topping').value //grabs input value
+    const pizzaId = parseInt(document.querySelector(`#option`).dataset.id) //category input into an integer
 
-        postRequestForToppingForm(toppingInput) //POST REQUEST GRABS INPUT VALUE................
+    //${event.target.dataset.id}`
+    
+
+        postRequestForToppingForm(toppingInput, pizzaId) //POST REQUEST GRABS INPUT VALUE................
 }
 
 
@@ -239,6 +245,7 @@ function getPizzasForDropdown(pizza) {
 
     let myOption = document.createElement("option")
     myOption.setAttribute("data-id", `${pizza.id}`)
+    myOption.setAttribute("id", `option`)
     myOption.innerHTML += `${pizza.attributes.title}`
 
     pizzaSelectList.appendChild(myOption)

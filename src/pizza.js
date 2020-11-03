@@ -33,10 +33,8 @@ class Pizza {
                                     <br>
 
 
-                                            <select id="pizza-list-${this.id}" data-id=${this.id}>
-                                            <option placeholder="pizza..." value="">
+                                            <select id="pizza-list">
                                     
-                                    </option>
                                     </select>
                                    
                                     

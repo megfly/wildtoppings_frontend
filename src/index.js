@@ -1,23 +1,4 @@
 
-//ADD TOPPING BUTTON ISNT WORKING- I THINK I HAVE TO GRAB IT BY THE DATA ID BUT IM HAVING TROUBLE WITH FINDING HOW TO GRAB IT
-    //steps for add a topping....
-
-            //SUBMIT EVENT OON FORM
-
-            //addToppingToPizzaSubmitButton.addEventListener("submit", (event) => {toppingFormHandler(event)})
-
-//TOPPINGS/UNDEFINED
-        //4. Then it goes to the toppingformhandler
-            //function toppingFormHandler(event) {
-                //event.preventDefault()
-                //const toppingInput = document.querySelector('#input-topping').value
-                //postRequestForToppingForm(toppingInput) //POST REQUEST GRABS INPUT VALUE................
-
-
-        //5. Next it goes to post request for topping form
-        //6. lastly we will then want to add it to the dom
-
-
 //create a pizza action is freezing
 
 

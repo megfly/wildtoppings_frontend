@@ -31,6 +31,13 @@ class Pizza {
                                 placeholder="topping..">
                                 <br>
                                     <br>
+                                    <label for="topping">Choose a pizza:</label> ////////////collection seelct
+                                        <select id="toppings" name="toppings">
+                                        //////////////////////////can i iterate over all the pizzas and add all the option values
+                                        ///////dynamically generate select options
+                                            <option value="topping">${this.id}</option>
+                                          
+                                        </select>
                                     <input id="add-a-topping-btn"
                                     data-id=${this.id}
                                     type="submit"

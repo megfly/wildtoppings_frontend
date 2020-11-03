@@ -1,16 +1,6 @@
 
 //ADD TOPPING BUTTON ISNT WORKING- I THINK I HAVE TO GRAB IT BY THE DATA ID BUT IM HAVING TROUBLE WITH FINDING HOW TO GRAB IT
     //steps for add a topping....
-        //1. under addpizzatoppingstothedom() 
-            //document.querySelectorAll("#add-topping".forEach(btn => btn.addEventListener('click', showForm))
-
-        //2. then we go to the showform function - this just shows the form
-            //function showForm() {document.getElementById('add-a-topping-form').style.display = 'block'
-
-        //3. then under fetchpizzas() which is a pizza get request we have event listeners attached to the add topping submit button
-
-            //let addToppingToPizzaSubmitButton = document.querySelector('#add-a-topping-btn')
-            //let addToppingToPizzaSubmitButtonDataId = addToppingToPizzaSubmitButton.getAttribute('data-id')
 
             //SUBMIT EVENT OON FORM
 
@@ -218,7 +208,7 @@ function postRequestForToppingForm(ingredient_name) {
             //connect to pizza with dropdown, or through show page,.... 
             //https://stackoverflow.com/questions/16699877/rails-optional-belongs-to
             ingredient_name: ingredient_name,
-            pizza_id: pizza_id
+            //pizza_id: pizza_id
          }) //so does this need to be api/v1/pizza/:id/topping/:id???
     }
         fetch(TOPPINGS_URL, configObj)
@@ -252,5 +242,4 @@ function getPizzasForDropdown(pizza) {
     myOption.innerHTML += `${pizza.attributes.title}`
 
     pizzaSelectList.appendChild(myOption)
-
 }

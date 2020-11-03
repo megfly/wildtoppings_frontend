@@ -216,19 +216,17 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
             pizza_id: pizza_id
          })
     }
-    debugger //IDK IF IM FETCHING THE CORRECT URL....... route goes to toppings create action .....and we have a pizza id.........but then
+     //IDK IF IM FETCHING THE CORRECT URL....... route goes to toppings create action .....and we have a pizza id.........but then
         fetch(TOPPINGS_URL, configObj)
             .then(response => response.json())
             .then(json => { 
+ 
+                let brandNewPizzaTopping = new Topping(json, json.data.attributes) //ok 5hiw isnt wokring here
                 console.log(json)
+                console.log(json.data.attributes)
+                //document.querySelector('#pizza-container').innerHTML += brandNewPizzaTopping.renderPizzaCard()
+                document.querySelector('#pizza-container').innerHTML += brandNewPizzaTopping.renderPizzaCard()
 
-                debugger
-                
-
-                //so then we add the topping to the pizzacard
-
-                // let brandNewPizzaTopping = new Topping(topping, topping.attributes) //ok 5hiw isnt wokring here
-                // document.querySelector('#pizza-container').innerHTML += brandNewPizzaTopping.renderPizzaCard()
         })
 }
 

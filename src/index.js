@@ -128,7 +128,8 @@ function toppingFormHandler(event) {
 
     /////////////////////////////////////////////////////////////////////////////////////THIS ISNT GETTIN DATAID
 debugger
-    let pizza_id = parseInt(document.querySelector(`#option`).dataset.id) 
+
+    let pizza_id = parseInt(document.querySelector(`#option`).value) 
         postRequestForToppingForm(toppingInput, pizza_id)
 }
 
@@ -237,7 +238,6 @@ function getPizzasForDropdown(pizza) {
     console.log(pizza)
     
     const pizzaSelectList = document.querySelector('#pizza-list')
-    //pizzaSelectList.setAttribute("data-id", `${pizza.id}`)
     
 
     let myOption = document.createElement("option")

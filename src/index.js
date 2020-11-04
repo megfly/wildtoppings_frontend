@@ -13,7 +13,7 @@ const TOPPINGS_URL = `${BASE_URL}/api/v1/toppings`
 document.addEventListener('DOMContentLoaded', () => {
     console.log("loaded")
     fetchPizzas()
-    fetchToppings()
+    //fetchToppings()
 
 
         // CREATE A NEW PIZZA EVENT LISTENER
@@ -86,16 +86,16 @@ function postRequestForPizzaForm(title, description) {
 
 
 //Fetch Requests for ingredients .............. currently not using this
-    function fetchToppings() {
-        fetch(TOPPINGS_URL) //promise
-        .then((response) => response.json())
-        .then((toppingJson) => {
+    // function fetchToppings() {
+    //     fetch(TOPPINGS_URL) //promise
+    //     .then((response) => response.json())
+    //     .then((toppingJson) => {
              
-            let newTopping = new Topping(toppingJson)
+    //         let newTopping = new Topping(toppingJson)
 
-            })
-        }
-    ;
+    //         })
+    //     }
+    // ;
 
 
 
@@ -124,13 +124,10 @@ function toppingFormHandler(event) {
 
     /////////////////////////////////////////////////////////////////////////////////////THIS ISNT GETTING CORRECT DATAID
 
-    let pizza_id = parseInt(document.querySelector(`#option`).dataset.id) 
-
-    //${event.target.dataset.id}`
-    
-
+    let pizza_id = parseInt(document.querySelector(`#pizza-list`).dataset.id) 
         postRequestForToppingForm(toppingInput, pizza_id)
 }
+
 
 
 
@@ -161,6 +158,7 @@ function addPizzaToppingsToDOM(pizza) {
     document.querySelectorAll(".delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
     document.querySelectorAll("#add-topping").forEach(btn => btn.addEventListener('click', showForm)) 
 }
+
 
 
 
@@ -202,11 +200,16 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
             .then(response => response.json())
             .then(json => { 
  
-                let brandNewPizzaTopping = new Topping(json, json.data.attributes) //ok 5hiw isnt wokring here
-                console.log(json)
-                console.log(json.data.attributes)
+                let brandNewPizzaTopping = new Topping(json.data, json.data.attributes) 
+   
+                
                 //document.querySelector('#pizza-container').innerHTML += brandNewPizzaTopping.renderPizzaCard()
-                document.querySelector('#pizza-container').innerHTML += brandNewPizzaTopping.renderPizzaCard()
+                //i want to put the pizza topping in the li
+
+                const ul = document.querySelector(`#pizza-${pizza_id}-toppings`)
+                const li = document.createElement('li')
+                li.innerHTML += `${ingredient_name}`
+                ul.appendChild(li)
 
         })
 }
@@ -222,6 +225,7 @@ function getPizzasForDropdown(pizza) {
     console.log(pizza)
     
     const pizzaSelectList = document.querySelector('#pizza-list')
+    pizzaSelectList.setAttribute("data-id", `${pizza.id}`)
     
 
     let myOption = document.createElement("option")

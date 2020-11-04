@@ -25,7 +25,6 @@ class Pizza {
                                 <form id="add-a-topping-form" style="display: none;">
                                     <h3>Add Topping!</h3>
                                     <input id="input-topping"
-                                    data-id=${this.id}
                                     type="text" 
                                     name="topping" 
                                     value="" 
@@ -40,7 +39,7 @@ class Pizza {
                                    
                                     
                                     <input id="add-a-topping-btn"
-                                    data-id=${this.id}
+                                   
                                     type="submit"
                                     name="submit"
                                     value="Submit!"

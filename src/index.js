@@ -127,7 +127,7 @@ function toppingFormHandler(event) {
     const toppingInput = document.querySelector('#input-topping').value //grabs input value
 
     /////////////////////////////////////////////////////////////////////////////////////THIS ISNT GETTIN DATAID
-//debugger
+debugger
     let pizza_id = parseInt(document.querySelector(`#option`).dataset.id) 
         postRequestForToppingForm(toppingInput, pizza_id)
 }
@@ -199,7 +199,7 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
             pizza_id: pizza_id
          })
     }
-     //IDK IF IM FETCHING THE CORRECT URL....... route goes to toppings create action .....and we have a pizza id.........but then
+     
         fetch(TOPPINGS_URL, configObj)
             .then(response => response.json())
             .then(json => { 
@@ -209,6 +209,7 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
 console.log(json)
 console.log(json.data)
 console.log(json.data.attributes)
+
                 const ul = document.querySelector(`#pizza-${pizza_id}-toppings`)
                 const li = document.createElement('li')
                 li.innerHTML += `${ingredient_name}`
@@ -236,7 +237,7 @@ function getPizzasForDropdown(pizza) {
     console.log(pizza)
     
     const pizzaSelectList = document.querySelector('#pizza-list')
-    pizzaSelectList.setAttribute("data-id", `${pizza.id}`)
+    //pizzaSelectList.setAttribute("data-id", `${pizza.id}`)
     
 
     let myOption = document.createElement("option")

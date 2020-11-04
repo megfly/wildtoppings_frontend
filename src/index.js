@@ -1,5 +1,9 @@
 
-//create a pizza action is freezing
+//create a pizza action is freezing but it is being added to the dom 
+    //id says undefined?
+
+//grabbing pizza_id bu the dropdown dataset id option but its not working
+    //form also freezing?
 
 
 // URL's
@@ -122,9 +126,9 @@ function toppingFormHandler(event) {
 
     const toppingInput = document.querySelector('#input-topping').value //grabs input value
 
-    /////////////////////////////////////////////////////////////////////////////////////THIS ISNT GETTING CORRECT DATAID
-
-    let pizza_id = parseInt(document.querySelector(`#pizza-list`).dataset.id) 
+    /////////////////////////////////////////////////////////////////////////////////////THIS ISNT GETTIN DATAID
+//debugger
+    let pizza_id = parseInt(document.querySelector(`#option`).dataset.id) 
         postRequestForToppingForm(toppingInput, pizza_id)
 }
 
@@ -201,15 +205,22 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
             .then(json => { 
  
                 let brandNewPizzaTopping = new Topping(json.data, json.data.attributes) 
-   
-                
                 //document.querySelector('#pizza-container').innerHTML += brandNewPizzaTopping.renderPizzaCard()
-                //i want to put the pizza topping in the li
-
+console.log(json)
+console.log(json.data)
+console.log(json.data.attributes)
                 const ul = document.querySelector(`#pizza-${pizza_id}-toppings`)
                 const li = document.createElement('li')
                 li.innerHTML += `${ingredient_name}`
                 ul.appendChild(li)
+
+                const deleteButton = document.createElement('button')
+
+                deleteButton.setAttribute("class", "delete-topping")
+                deleteButton.setAttribute("data-id", `${json.data.id}`)
+                deleteButton.innerText = "Delete Topping"
+
+                li.appendChild(deleteButton)
 
         })
 }

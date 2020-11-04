@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //fetchToppings()
 
 
-        // CREATE A NEW PIZZA EVENT LISTENER
+        // CREATE A NEW PIZZA SUBMIT EVENT LISTENER
         const createPizzaForm = document.querySelector('#create-pizza-form')
         createPizzaForm.addEventListener("submit", (event) => {
             pizzaFormHandler(event)
@@ -43,11 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 addPizzaToppingsToDOM(pizza)
                 getPizzasForDropdown(pizza)
 
-                // let addToppingToPizzaForm = document.querySelector(`#add-a-topping-form`)
-                // addToppingToPizzaForm.setAttribute("data-id", `${pizza.id}`)
-
             })
 
+
+                // CREATE A NEW TOPPING SUBMIT EVENT LISTENER            
                 let findAddToppingToPizzaForm = document.querySelector(`#add-a-topping-form`)
                 findAddToppingToPizzaForm.addEventListener("submit", (event) => {
                     toppingFormHandler(event)
@@ -60,8 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // Fetch request to POST new pizzas
 function postRequestForPizzaForm(title, description) {
     event.preventDefault()
-
-    //THIS IS FREEZING AFTER I CREATE A PIZZA
 
         const configObj = {
             method: "POST",
@@ -82,29 +79,12 @@ function postRequestForPizzaForm(title, description) {
                     
                     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
 
-                    console.log(brandNewPizza)
-                
             })
         }
 
 
 
-//Fetch Requests for ingredients .............. currently not using this
-    // function fetchToppings() {
-    //     fetch(TOPPINGS_URL) //promise
-    //     .then((response) => response.json())
-    //     .then((toppingJson) => {
-             
-    //         let newTopping = new Topping(toppingJson)
-
-    //         })
-    //     }
-    // ;
-
-
-
-
-//function for pizza form handler
+//PZZA FORM HANDLER
 function pizzaFormHandler(event) {
 
     event.preventDefault()
@@ -126,7 +106,7 @@ function toppingFormHandler(event) {
 
     const toppingInput = document.querySelector('#input-topping').value //grabs input value
 
-    /////////////////////////////////////////////////////////////////////////////////////THIS ISNT GETTIN DATAID
+    ///////////////////////////////////////////////////////////////////////////////////
 debugger
 
     let pizza_id = parseInt(document.querySelector(`#option`).value) 
@@ -147,8 +127,6 @@ function addPizzaToppingsToDOM(pizza) {
   
                 ul.appendChild(li)
 
-                //Adding delete buttons to each topping
-
                     const deleteButton = document.createElement('button')
 
                     deleteButton.setAttribute("class", "delete-topping")
@@ -167,7 +145,7 @@ function addPizzaToppingsToDOM(pizza) {
 
 
 
-//Function to DElete topping
+//FETCH to DElete topping
 function deleteTopping() {
     
     event.preventDefault()
@@ -234,6 +212,8 @@ function showForm() {
     document.getElementById(`add-a-topping-form`).style.display = "block"
 };
 
+
+//get pizzas from DROPDOWN
 function getPizzasForDropdown(pizza) {
     console.log(pizza)
     

@@ -5,6 +5,9 @@
 //grabbing pizza_id bu the dropdown dataset id option but its not working
     //form also freezing?
 
+    //update the add topping form- dynamically update form - when we add new pizza, grab the form, and give it the new option dynamically
+    //clear out form- grab form node- .reset()
+
 
 // URL's
 const BASE_URL = "http://localhost:3000"
@@ -58,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
 // Fetch request to POST new pizzas
 function postRequestForPizzaForm(title, description) {
-    event.preventDefault()
 
         const configObj = {
             method: "POST",
@@ -78,6 +80,9 @@ function postRequestForPizzaForm(title, description) {
                     let brandNewPizza = new Pizza(pizza, pizza.data.attributes)
                     
                     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
+
+                    //document.getElementById('input-title').value='';
+                    //document.getElementById('input-description').value='';
 
             })
         }
@@ -107,9 +112,11 @@ function toppingFormHandler(event) {
     const toppingInput = document.querySelector('#input-topping').value //grabs input value
 
     ///////////////////////////////////////////////////////////////////////////////////
-debugger
 
-    let pizza_id = parseInt(document.querySelector(`#option`).value) 
+
+    let pizzaList = document.getElementById('pizza-list')
+    let pizza_id = (pizzaList.options[pizzaList.selectedIndex].getAttribute('data-id'))
+ 
         postRequestForToppingForm(toppingInput, pizza_id)
 }
 
@@ -148,7 +155,7 @@ function addPizzaToppingsToDOM(pizza) {
 //FETCH to DElete topping
 function deleteTopping() {
     
-    event.preventDefault()
+    //event.preventDefault()
 
     const configObj = {
         method: "DELETE",
@@ -165,8 +172,8 @@ function deleteTopping() {
 
 //POST REQUEST TO ADD TOPPING TO PIZZA
 function postRequestForToppingForm(ingredient_name, pizza_id) {
-//debugger
-    event.preventDefault()
+
+    //event.preventDefault()
     const configObj = {
         method: "POST",
         headers: {

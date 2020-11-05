@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //Add Pizzas to the DOM!!!
                 addPizzaToppingsToDOM(pizza)
-                addPizzaDeleteButtonToTheDom(pizza)
+                addPizzaEditButtonToTheDom(pizza)
                 getPizzasForDropdown(pizza)
 
             })
@@ -80,13 +80,13 @@ function postRequestForPizzaForm(title, description) {
                     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
 
                         let eachPizzaContainer = document.querySelector(`#pizza-container`)
-                        const deleteButton = document.createElement('button')
+                        const editButton = document.createElement('button')
             
-                        deleteButton.setAttribute("class", "delete-pizza")
-                        deleteButton.setAttribute("data-id", `${pizza.data.id}`)
-                        deleteButton.innerText = "Delete Pizza"
+                        editButton.setAttribute("class", "edit-pizza")
+                        editButton.setAttribute("data-id", `${pizza.data.id}`)
+                        editButton.innerText = "Edit Pizza"
             
-                        eachPizzaContainer.appendChild(deleteButton)
+                        eachPizzaContainer.appendChild(editButton)
 
                     addNewPizzasToDropdown(brandNewPizza)
             })
@@ -126,18 +126,18 @@ function toppingFormHandler(event) {
 }
 
 
-function addPizzaDeleteButtonToTheDom(pizza) {
+function addPizzaEditButtonToTheDom(pizza) {
     
         let eachPizzaContainer = document.querySelector(`#pizza-container`)
-        const deleteButton = document.createElement('button')
+        const editButton = document.createElement('button')
 
-        deleteButton.setAttribute("class", "delete-pizza")
-        deleteButton.setAttribute("data-id", `${pizza.id}`)
-        deleteButton.innerText = "Delete Pizza"
+        editButton.setAttribute("class", "edit-pizza")
+        editButton.setAttribute("data-id", `${pizza.id}`)
+        editButton.innerText = "Edit Pizza"
 
-        eachPizzaContainer.appendChild(deleteButton)
+        eachPizzaContainer.appendChild(editButton)
 
-        document.querySelectorAll(".delete-pizza").forEach(btn => btn.addEventListener('click', deletePizza))
+        document.querySelectorAll(".edit-pizza").forEach(btn => btn.addEventListener('click', editPizza))
 }
 
 
@@ -188,21 +188,44 @@ function deleteTopping() {
 }
 
 
-//DELETE WHOLE PIZZAS
-function deletePizza() {
+//EDIT WHOLE PIZZAS
+function editPizza() {
+    event.preventDefault()
+    const id = event.target.dataset.id 
 
-    const configObj = {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-    } 
+    fetch(PIZZAS_URL + `/${event.target.dataset.id}`) //data returned?
+        .then(response => response.json())
+        .then(pizza => {
     
-    fetch(PIZZAS_URL + `/${event.target.dataset.id}`, configObj) //target the dataset id of the topping that is clicked
-        .then(event.target.remove(`.pizza-card-${event.target.dataset.id}`))
+            const editFormHTML = `
+            <form id="edit-pizza-form" data-id=${pizza.data.id}>
+                <h3> Edit pizza! </h3>
+                <input id="edit-title" type="text" value="${pizza.data.attributes.title}">
+            <br>
+                <br>
+                <input id="edit-description" type="text" value="${pizza.data.attributes.description}">
+            <br>
+                <br>
+                <input id="edit-pizza-btn" type="submit"/>
+            <br><br>
+        </form>
+            `
+            // const pizzaForm = document.getElementById("create-pizza-form")
+            // pizzaForm.innerHTML = editFormHTML
+            
+            // const editPizzaForm = document.querySelector('#edit-pizza-form')
+            // editPizzaForm.addEventListener("submit", (event) => {
+            //     debugger
+            //     updatePizza(event)
+            //     document.querySelector("#edit-pizza-form").reset();
+            // });
+        })
 }
 
+
+function updatePizza(){
+    console.log("hi")
+}
 
 
 //POST REQUEST TO ADD TOPPING TO PIZZA

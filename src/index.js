@@ -1,4 +1,3 @@
-//clear out form- grab form node- .reset()
 
 //grabbing pizza_id bu the dropdown dataset id option but its not working
     
@@ -98,6 +97,7 @@ function pizzaFormHandler(event) {
     //this pizzaid is undefined........
 
         postRequestForPizzaForm(titleInput, descriptionInput)
+        addNewPizzasToDropdown(titleInput)
 }
 
 
@@ -231,4 +231,13 @@ function getPizzasForDropdown(pizza) {
     myOption.innerHTML += `${pizza.attributes.title}`
 
     pizzaSelectList.appendChild(myOption)
+}
+
+
+function addNewPizzasToDropdown(pizzaTitleInput) {
+
+    const pizzaListDropdown = document.querySelector("#pizza-list")
+debugger
+    pizzaListDropdown.push(pizzaTitleInput)
+
 }

@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //Add Pizzas to the DOM!!!
                 addPizzaToppingsToDOM(pizza)
+                addPizzaDeleteButtonToTheDom(pizza)
                 getPizzasForDropdown(pizza)
 
             })
@@ -117,6 +118,18 @@ function toppingFormHandler(event) {
 }
 
 
+function addPizzaDeleteButtonToTheDom(pizza) {
+    
+        let eachPizzaContainer = document.querySelector(`#pizza-container`)
+        const deleteButton = document.createElement('button')
+
+        deleteButton.setAttribute("class", "delete-pizza")
+        deleteButton.setAttribute("data-id", `${pizza.id}`)
+        deleteButton.innerText = "Delete Pizza"
+
+        eachPizzaContainer.appendChild(deleteButton)
+}
+
 
 
 //Adding our pizza toppings to the DOM!!!!!!!!!
@@ -142,6 +155,7 @@ function addPizzaToppingsToDOM(pizza) {
 
     // Finding each delete topping button and adding an event listener
     document.querySelectorAll(".delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
+    document.querySelectorAll("#delete-pizza").forEach(btn => btn.addEventListener('click', deletePizza))
     document.querySelectorAll("#add-topping").forEach(btn => btn.addEventListener('click', showForm)) 
 }
 
@@ -161,6 +175,23 @@ function deleteTopping() {
         },
     } 
     fetch(TOPPINGS_URL + `/${event.target.dataset.id}`, configObj) //target the dataset id of the topping that is clicked
+        .then(event.target.parentElement.remove())
+}
+
+
+//DELETE WHOLE PIZZAS
+function deletePizza() {
+    
+    //event.preventDefault()
+
+    const configObj = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+    } 
+    fetch(PIZZAS_URL + `/${event.target.dataset.id}`, configObj) //target the dataset id of the topping that is clicked
         .then(event.target.parentElement.remove())
 }
 

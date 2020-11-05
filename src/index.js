@@ -1,10 +1,4 @@
-
-//grabbing pizza_id bu the dropdown dataset id option but its not working
-    
-//update the add topping form- dynamically update form 
-    //- when we add new pizza, grab the form, and give it the new option dynamically
-
-
+//id is undefined after create a pizza post requests unless we refresh page???
 
 // URL's
 const BASE_URL = "http://localhost:3000"
@@ -76,11 +70,14 @@ function postRequestForPizzaForm(title, description) {
             .then(response => response.json())
             .then(pizza => {
         
-                    let brandNewPizza = new Pizza(pizza, pizza.data.attributes)
+                    let brandNewPizza = new Pizza(pizza.data, pizza.data.attributes)
+
+                    console.log(pizza.data)
+                    console.log(pizza.data.attributes)
                     
                     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
 
-
+                    addNewPizzasToDropdown(brandNewPizza)
             })
         }
 
@@ -97,7 +94,6 @@ function pizzaFormHandler(event) {
     //this pizzaid is undefined........
 
         postRequestForPizzaForm(titleInput, descriptionInput)
-        addNewPizzasToDropdown(titleInput)
 }
 
 
@@ -190,9 +186,9 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
  
                 let brandNewPizzaTopping = new Topping(json.data, json.data.attributes) 
                 //document.querySelector('#pizza-container').innerHTML += brandNewPizzaTopping.renderPizzaCard()
-console.log(json)
-console.log(json.data)
-console.log(json.data.attributes)
+// console.log(json)
+// console.log(json.data)
+// console.log(json.data.attributes)
 
                 const ul = document.querySelector(`#pizza-${pizza_id}-toppings`)
                 const li = document.createElement('li')
@@ -220,7 +216,7 @@ function showForm() {
 
 //get pizzas from DROPDOWN
 function getPizzasForDropdown(pizza) {
-    console.log(pizza)
+    //console.log(pizza)
     
     const pizzaSelectList = document.querySelector('#pizza-list')
     
@@ -234,10 +230,17 @@ function getPizzasForDropdown(pizza) {
 }
 
 
-function addNewPizzasToDropdown(pizzaTitleInput) {
+function addNewPizzasToDropdown(newPizza) {
 
-    const pizzaListDropdown = document.querySelector("#pizza-list")
-debugger
-    pizzaListDropdown.push(pizzaTitleInput)
+    const pizzaSelectList = document.querySelector('#pizza-list')
+
+    //debugger
+
+    let myOption = document.createElement("option")
+    myOption.setAttribute("data-id", `${newPizza.id}`) //id is undefined???
+    myOption.setAttribute("id", `option`)
+    myOption.innerHTML += `${newPizza.title}`
+
+    pizzaSelectList.appendChild(myOption)
 
 }

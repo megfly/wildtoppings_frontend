@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // CREATE A NEW PIZZA SUBMIT EVENT LISTENER
         const createPizzaForm = document.querySelector('#create-pizza-form')
         createPizzaForm.addEventListener("submit", (event) => {
+            alertForPizza()
             pizzaFormHandler(event)
             document.querySelector("#create-pizza-form").reset();
         });
@@ -44,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // CREATE A NEW TOPPING SUBMIT EVENT LISTENER            
                 let findAddToppingToPizzaForm = document.querySelector(`#add-a-topping-form`)
                 findAddToppingToPizzaForm.addEventListener("submit", (event) => {
+                    alertForTopping()
                     toppingFormHandler(event)
                     document.querySelector("#add-a-topping-form").reset();
                 })
@@ -243,4 +245,28 @@ function addNewPizzasToDropdown(newPizza) {
 
     pizzaSelectList.appendChild(myOption)
 
+}
+
+function alertForPizza(){
+    const titleInput = document.querySelector('#input-title').value
+    const descriptionInput = document.querySelector('#input-description').value
+
+    //const fail = alert("Please try again! Form must not be blank!")
+    //const success = alert("Woohoo! Creation successful!")
+
+    if (titleInput === null || titleInput === "" && descriptionInput === null || descriptionInput === "") {
+        alert("Please try again! Form must not be blank!")
+    } else {
+        alert("Woohoo! Creation successful!")
+    }; 
+}
+
+function alertForTopping() {
+    const toppingInput = document.querySelector('#input-topping').value
+
+    if (toppingInput === null || toppingInput === "") {
+        alert("Please try again! Form must not be blank!")
+    } else {
+        alert("Woohoo! Creation successful!")
+    }
 }

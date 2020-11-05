@@ -1,12 +1,10 @@
-
-//create a pizza action is freezing but it is being added to the dom 
-    //id says undefined?
+//clear out form- grab form node- .reset()
 
 //grabbing pizza_id bu the dropdown dataset id option but its not working
-    //form also freezing?
+    
+//update the add topping form- dynamically update form 
+    //- when we add new pizza, grab the form, and give it the new option dynamically
 
-    //update the add topping form- dynamically update form - when we add new pizza, grab the form, and give it the new option dynamically
-    //clear out form- grab form node- .reset()
 
 
 // URL's
@@ -27,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const createPizzaForm = document.querySelector('#create-pizza-form')
         createPizzaForm.addEventListener("submit", (event) => {
             pizzaFormHandler(event)
+            document.querySelector("#create-pizza-form").reset();
         });
 })
 
@@ -53,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let findAddToppingToPizzaForm = document.querySelector(`#add-a-topping-form`)
                 findAddToppingToPizzaForm.addEventListener("submit", (event) => {
                     toppingFormHandler(event)
+                    document.querySelector("#add-a-topping-form").reset();
                 })
         })
     };
@@ -81,8 +81,6 @@ function postRequestForPizzaForm(title, description) {
                     
                     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
 
-                    //document.getElementById('input-title').value='';
-                    //document.getElementById('input-description').value='';
 
             })
         }

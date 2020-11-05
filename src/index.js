@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             })
 
-
                 // CREATE A NEW TOPPING SUBMIT EVENT LISTENER            
                 let findAddToppingToPizzaForm = document.querySelector(`#add-a-topping-form`)
                 findAddToppingToPizzaForm.addEventListener("submit", (event) => {
@@ -79,6 +78,15 @@ function postRequestForPizzaForm(title, description) {
                     console.log(pizza.data.attributes)
                     
                     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
+
+                        let eachPizzaContainer = document.querySelector(`#pizza-container`)
+                        const deleteButton = document.createElement('button')
+            
+                        deleteButton.setAttribute("class", "delete-pizza")
+                        deleteButton.setAttribute("data-id", `${pizza.data.id}`)
+                        deleteButton.innerText = "Delete Pizza"
+            
+                        eachPizzaContainer.appendChild(deleteButton)
 
                     addNewPizzasToDropdown(brandNewPizza)
             })
@@ -128,6 +136,8 @@ function addPizzaDeleteButtonToTheDom(pizza) {
         deleteButton.innerText = "Delete Pizza"
 
         eachPizzaContainer.appendChild(deleteButton)
+
+        document.querySelectorAll(".delete-pizza").forEach(btn => btn.addEventListener('click', deletePizza))
 }
 
 
@@ -155,7 +165,6 @@ function addPizzaToppingsToDOM(pizza) {
 
     // Finding each delete topping button and adding an event listener
     document.querySelectorAll(".delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
-    document.querySelectorAll("#delete-pizza").forEach(btn => btn.addEventListener('click', deletePizza))
     document.querySelectorAll("#add-topping").forEach(btn => btn.addEventListener('click', showForm)) 
 }
 
@@ -181,8 +190,6 @@ function deleteTopping() {
 
 //DELETE WHOLE PIZZAS
 function deletePizza() {
-    
-    //event.preventDefault()
 
     const configObj = {
         method: "DELETE",
@@ -191,8 +198,9 @@ function deletePizza() {
             "Accept": "application/json"
         },
     } 
+    
     fetch(PIZZAS_URL + `/${event.target.dataset.id}`, configObj) //target the dataset id of the topping that is clicked
-        .then(event.target.parentElement.remove())
+        .then(event.target.remove(`.pizza-card-${event.target.dataset.id}`))
 }
 
 

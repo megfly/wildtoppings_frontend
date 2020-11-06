@@ -1,5 +1,5 @@
-//Edit pizza form doesnt show up on newly created pizzas unless we put on post request...but its on get request so now theres two???
-//dropdown doesnt update
+
+//dropdown doesnt update with new patched pizza title
 
 // URL's
 const BASE_URL = "http://localhost:3000"
@@ -201,7 +201,7 @@ function editPizza() {
             
             let eachPizzaContainer = document.querySelector(`#pizza-container`)
 
-                // Create a form synamically 
+                // Create a form dynamically 
                     const editForm = document.createElement("form"); 
                     editForm.setAttribute("id", "edit-form")
                     editForm.setAttribute("method", "post"); 
@@ -240,6 +240,7 @@ function editPizza() {
 
                         document.querySelector("#edit-form").addEventListener('submit', updatePizza)
                         document.getElementById("edit-form").addEventListener("submit", hideForm);
+                        //document.getElementById("edit-form").addEventListener("submit", addUpdatedPizzasToDropdown)
         })
 }
 
@@ -265,7 +266,7 @@ function updatePizza(){
     fetch(PIZZAS_URL + `/${event.target.dataset.id}`, configObj)    
         .then(response => response.json())
         .then(pizza => {
-            const updatedPizza = new Pizza(pizza, pizza.data.attributes)
+            const updatedPizza = new Pizza(pizza.data, pizza.data.attributes)
 
             const getTheCardTitle = document.querySelector(`.pizza-card-${pizza.data.id}`).querySelector('.card-title')
             getTheCardTitle.innerHTML = ""
@@ -278,6 +279,11 @@ function updatePizza(){
 
             document.querySelector("#edit-form-title-input").value = ""
             document.querySelector("#edit-form-description-input").value = ""
+
+            //document.getElementById("edit-form").addEventListener("submit", addUpdatedPizzasToDropdown)
+            //addNewPizzasToDropdown(updatedPizza)
+            addUpdatedPizzasToDropdown(updatedPizza)
+            //debugger
 
         })
 }
@@ -342,7 +348,7 @@ function getPizzasForDropdown(pizza) {
 
     let myOption = document.createElement("option")
     myOption.setAttribute("data-id", `${pizza.id}`)
-    myOption.setAttribute("id", `option`)
+    myOption.setAttribute("id", `option-${pizza.id}`)
     myOption.innerHTML += `${pizza.attributes.title}`
 
     pizzaSelectList.appendChild(myOption)
@@ -357,10 +363,32 @@ function addNewPizzasToDropdown(newPizza) {
 
     let myOption = document.createElement("option")
     myOption.setAttribute("data-id", `${newPizza.id}`) //id is undefined???
-    myOption.setAttribute("id", `option`)
+    myOption.setAttribute("id", `option-${newPizza.id}`)
     myOption.innerHTML += `${newPizza.title}`
 
     pizzaSelectList.appendChild(myOption)
+}
+
+
+function addUpdatedPizzasToDropdown(updatedPizza) {
+    
+    const pizzaSelectList = document.querySelector('#pizza-list')
+    
+
+    let myOption = document.querySelector(`#option-${updatedPizza.id}`)
+    //this is broken
+
+    //debugger
+    myOption.innerText = `${updatedPizza.title}` //this is where its broken
+
+    //pizzaSelectList.appendChild(myOption)
+    
+    // let pizzaSelectList = document.querySelector('#pizza-list')
+    // let myOptionFromList = document.querySelector('#option').getAttribute("data-id", `${updatedPizza.id}`)
+    // debugger
+    
+    // myOptionFromList.innerHTML = `${updatedPizza.title}`
+
 
 }
 

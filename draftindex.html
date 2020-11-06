@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+
+<!-- Bootstrap-4 CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
+<!-- link stylesheet -->
+        <link rel="stylesheet" type="text/css" href="styles/styles.css">
+        <title> Wild Toppings Pizza! </title>
+<!-- script tag connects javascript file with html file -->
+        <script type="text/javascript" src="./src/index.js"></script> 
+        <script type="text/javascript" src="./src/pizza.js"></script>
+        <script type="text/javascript" src="./src/topping.js"></script>
+    </head>
+
+    <body>
+        <h1>Wild Pizza Toppings!</h1>
+        <br>
+        🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕
+        <br>
+
+<!-- pizza form html -->
+
+<form id="create-pizza-form">
+    <h3>Create a Pizza!</h3>
+        <input id="input-title"
+        type="text" 
+        name="title" 
+        value="" 
+        placeholder="Enter a pizza name..."
+        >
+    <br>
+        <br>
+        <input id="input-description" 
+        name="description" 
+        value="" 
+        placeholder="Enter a pizza description..." 
+        class="input-text"
+        >
+    <br>
+        <br>
+        <input id="create-pizza-btn"
+        type="submit"
+        name="submit"
+        value="Create New Pizza!"
+        class="submit"
+      />
+    <br><br>
+</form>
+<br>
+
+<!-- add a topping form -->
+
+<button id="add-topping" onclick="showForm()">Add Toppings to Pizzas!</button>
+<br>
+
+<form id="add-a-topping-form" style="display: none;">
+    <h3>Add Topping!</h3>
+    <input id="input-topping"
+    type="text" 
+    name="topping" 
+    value="" 
+    placeholder="topping..">
+<br>
+    <br>
+
+
+    <select id="pizza-list">
+    
+    </select>
+   
+    
+    <input id="add-a-topping-btn"
+    type="submit"
+    name="submit"
+    value="Submit!"
+    class="submit"
+/>
+<br><br>
+</form>
+<br>
+
+<!-- pizza cards html -->
+<div id="pizza-container"></div>
+<ul id="ul">
+
+</ul>
+
+
+    </body>
+</html>

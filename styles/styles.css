@@ -37,6 +37,10 @@
     display: grid;
   }
 
+  .container {
+    display: grid;
+  }
+
   div.a {
     text-align: center;
   }
@@ -50,3 +54,7 @@
   .form-group-topping {
     background-color: azure;
   }
+
+  /* #pizza-container {
+    display: grid
+  } */

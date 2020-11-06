@@ -1,4 +1,4 @@
-//id is undefined after create a pizza post requests unless we refresh page???
+//Edit pizza form doesnt show up on newly created pizzas unless we refresh page???
 
 // URL's
 const BASE_URL = "http://localhost:3000"
@@ -87,7 +87,7 @@ function postRequestForPizzaForm(title, description) {
                         editButton.innerText = "Edit Pizza"
             
                         eachPizzaContainer.appendChild(editButton)
-
+                    addPizzaEditButtonToTheDom(pizza)
                     addNewPizzasToDropdown(brandNewPizza)
             })
         }
@@ -101,9 +101,6 @@ function pizzaFormHandler(event) {
 
     const titleInput = document.querySelector('#input-title').value //grabs input value
     const descriptionInput = document.querySelector('#input-description').value
-    //debugger
-    //this pizzaid is undefined........
-
         postRequestForPizzaForm(titleInput, descriptionInput)
 }
 
@@ -116,9 +113,6 @@ function toppingFormHandler(event) {
 
     const toppingInput = document.querySelector('#input-topping').value //grabs input value
 
-    ///////////////////////////////////////////////////////////////////////////////////
-
-
     let pizzaList = document.getElementById('pizza-list')
     let pizza_id = (pizzaList.options[pizzaList.selectedIndex].getAttribute('data-id'))
  
@@ -126,8 +120,11 @@ function toppingFormHandler(event) {
 }
 
 
+
+
 function addPizzaEditButtonToTheDom(pizza) {
     
+    console.log(pizza)
         let eachPizzaContainer = document.querySelector(`#pizza-container`)
         const editButton = document.createElement('button')
 
@@ -136,9 +133,12 @@ function addPizzaEditButtonToTheDom(pizza) {
         editButton.innerText = "Edit Pizza"
 
         eachPizzaContainer.appendChild(editButton)
-
+        
         document.querySelectorAll(".edit-pizza").forEach(btn => btn.addEventListener('click', editPizza))
 }
+
+
+
 
 
 
@@ -190,7 +190,7 @@ function deleteTopping() {
 
 //EDIT WHOLE PIZZAS
 function editPizza() {
-    event.preventDefault()
+    //event.preventDefault()
     const id = event.target.dataset.id 
 
     fetch(PIZZAS_URL + `/${event.target.dataset.id}`) //data returned?

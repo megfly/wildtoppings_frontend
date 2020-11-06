@@ -65,9 +65,12 @@
   <!-- nav starts here -->
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong>Album</strong>
+      <!-- <a href="#" class="navbar-brand d-flex align-items-center"> -->
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" 
+        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" 
+        viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+        <circle cx="12" cy="13" r="4"/></svg> -->
+        <!-- <strong>Album</strong> -->
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -85,32 +88,59 @@
       <!-- CREATE PIZZA FORM -->
           <form id="create-pizza-form">
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <label for="pizzaname">Pizza Name:</label>
+              <input type="text" class="form-control" id="input-title" placeholder="Enter a pizza name...">
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <label for="pizzadescription">Pizza Description:</label>
+              <input type="text" class="form-control" id="input-description" placeholder="Enter a pizza description...">
             </div>
-            <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id="create-pizza-btn"> Create New Pizza!</button>
           </form>
 
-    </div>
+          <br><br><br>
+
+
+           <!-- add a topping form -->
+<div class="addatoppingform">
+
+  <form id="add-a-topping-form">
+    <div class="row">
+      <div class="col">
+          <input type="text" class="form-control" id="input-topping" placeholder="Topping...">
+              </div>
+    
+      <div class="col">
+          <div class="form-group">
+              <select class="form-control" id="pizza-list" placeholder="Topping..."></select>
+                </div>
+              </div>
+            </div>
+          <button id="add-a-topping-btn" type="button" class="btn btn-primary">Submit!</button>
+</form>
+</div>
+
+
+
   </section>
 
   <div class="album py-5 bg-light">
-    <!-- pizza cards html -->
-    <div class="container" id="pizza-container">
-      <ul id="ul">
-      
-      </ul>
 
-      <div class="row">
+
+   
+
+
+
+    <!-- pizza cards html -->
+
+
+      <div class="container" id="pizza-container">
+        <ul id="ul">
+      
+        </ul>
+  
+        <div class="row">
+      <!-- <div class="row"> -->
         <!-- <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>

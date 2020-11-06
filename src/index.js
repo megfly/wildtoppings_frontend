@@ -12,7 +12,6 @@ const TOPPINGS_URL = `${BASE_URL}/api/v1/toppings`
 document.addEventListener('DOMContentLoaded', () => {
     console.log("loaded")
     fetchPizzas()
-    //fetchToppings()
 
 
         // CREATE A NEW PIZZA SUBMIT EVENT LISTENER
@@ -46,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // CREATE A NEW TOPPING SUBMIT EVENT LISTENER            
                 let findAddToppingToPizzaForm = document.querySelector(`#add-a-topping-form`)
                 findAddToppingToPizzaForm.addEventListener("submit", (event) => {
+                    debugger
                     alertForTopping()
                     toppingFormHandler(event)
                     document.querySelector("#add-a-topping-form").reset();
@@ -81,14 +81,6 @@ function postRequestForPizzaForm(title, description) {
                     
                     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
 
-                        // let eachPizzaContainer = document.querySelector(`#pizza-container`)
-                        // const editButton = document.createElement('button')
-            
-                        // editButton.setAttribute("class", "edit-pizza")
-                        // editButton.setAttribute("data-id", `${pizza.data.id}`)
-                        // editButton.innerText = "Edit Pizza"
-            
-                        // eachPizzaContainer.appendChild(editButton)
                     addPizzaEditButtonToTheDom(pizza.data)
                     addNewPizzasToDropdown(brandNewPizza)
             })
@@ -130,13 +122,14 @@ function addPizzaEditButtonToTheDom(pizza) {
         let eachPizzaContainer = document.querySelector(`#pizza-container`)
         const editButton = document.createElement('button')
 
-        editButton.setAttribute("class", "edit-pizza")
+        editButton.setAttribute("id", "edit-pizza")
+        editButton.setAttribute("class", "btn btn-primary")
         editButton.setAttribute("data-id", `${pizza.id}`)
         editButton.innerText = "Edit Pizza"
 
         eachPizzaContainer.appendChild(editButton)
         
-        document.querySelectorAll(".edit-pizza").forEach(btn => btn.addEventListener('click', editPizza))
+        document.querySelectorAll("#edit-pizza").forEach(btn => btn.addEventListener('click', editPizza))
 }
 
 
@@ -157,7 +150,8 @@ function addPizzaToppingsToDOM(pizza) {
 
                     const deleteButton = document.createElement('button')
 
-                    deleteButton.setAttribute("class", "delete-topping")
+                    deleteButton.setAttribute("id", "delete-topping")
+                    deleteButton.setAttribute("class", "btn btn-outline-success btn-sm")
                     deleteButton.setAttribute("data-id", `${ing.id}`)
                     deleteButton.innerText = "Delete Topping"
 
@@ -166,8 +160,9 @@ function addPizzaToppingsToDOM(pizza) {
     });
 
     // Finding each delete topping button and adding an event listener
-    document.querySelectorAll(".delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
+    document.querySelectorAll("#delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
     document.querySelectorAll("#add-topping").forEach(btn => btn.addEventListener('click', showForm)) 
+    document.querySelectorAll("#add-a-topping-btn").forEach(btn => btn.addEventListener('click', hideForm))
 }
 
 
@@ -199,10 +194,12 @@ function editPizza() {
         .then(response => response.json())
         .then(pizza => {
             
-            let eachPizzaContainer = document.querySelector(`#pizza-container`)
+            // let eachPizzaContainer = document.querySelector(`#pizza-container`)
+            let thePizzaCard = document.querySelector(`.pizza-card-${pizza.data.id}`)
 
                 // Create a form dynamically 
                     const editForm = document.createElement("form"); 
+                    editForm.setAttribute("class", "form-group")
                     editForm.setAttribute("id", "edit-form")
                     editForm.setAttribute("method", "post"); 
                     editForm.setAttribute("data-id", `${pizza.data.id}`)
@@ -210,6 +207,7 @@ function editPizza() {
   
                     // Create an input element
                     const nameInput = document.createElement("input"); 
+                    editForm.setAttribute("class", "form-group")
                     nameInput.setAttribute("id", "edit-form-title-input")
                     nameInput.setAttribute("type", "text"); 
                     nameInput.setAttribute("value", `${pizza.data.attributes.title}`); 
@@ -217,6 +215,7 @@ function editPizza() {
 
                     // Create an input element
                     const descriptionInput = document.createElement("input"); 
+                    editForm.setAttribute("class", "form-group")
                     descriptionInput.setAttribute("id", "edit-form-description-input")
                     descriptionInput.setAttribute("type", "text"); 
                     descriptionInput.setAttribute("value", `${pizza.data.attributes.description}`); 
@@ -224,15 +223,20 @@ function editPizza() {
 
                     // create a submit button 
                     const s = document.createElement("input"); 
+                    s.setAttribute("class", "btn btn-primary")
                     s.setAttribute("type", "submit"); 
                     s.setAttribute("value", "Submit"); 
-
+                    
+                    
                          // Append the full name input to the form 
                          editForm.appendChild(nameInput);
                          editForm.appendChild(descriptionInput)
                           // Append the submit button to the form 
                         editForm.appendChild(s); 
-                        eachPizzaContainer.appendChild(editForm)
+
+                        debugger 
+
+                        thePizzaCard.appendChild(editForm)
     
 
             // const pizzaForm = document.getElementById("create-pizza-form") //grabs create pizza form
@@ -322,7 +326,8 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
 
                 const deleteButton = document.createElement('button')
 
-                deleteButton.setAttribute("class", "delete-topping")
+                deleteButton.setAttribute("id", "delete-topping")
+                deleteButton.setAttribute("class", "btn btn-outline-success btn-sm")
                 deleteButton.setAttribute("data-id", `${json.data.id}`)
                 deleteButton.innerText = "Delete Topping"
 
@@ -337,6 +342,10 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
 function showForm() {
     document.getElementById(`add-a-topping-form`).style.display = "block"
 };
+
+function hideForm() {
+    document.getElementById(`add-a-topping-form`).style.display = "none"
+}
 
 
 //get pizzas from DROPDOWN

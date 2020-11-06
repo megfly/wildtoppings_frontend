@@ -71,7 +71,7 @@ function postRequestForPizzaForm(title, description) {
         fetch(PIZZAS_URL, configObj)    
             .then(response => response.json())
             .then(pizza => {
-        
+    
                     let brandNewPizza = new Pizza(pizza.data, pizza.data.attributes)
 
                     console.log(pizza.data)
@@ -208,12 +208,14 @@ function editPizza() {
   
                     // Create an input element
                     const nameInput = document.createElement("input"); 
+                    nameInput.setAttribute("id", "edit-form-title-input")
                     nameInput.setAttribute("type", "text"); 
                     nameInput.setAttribute("value", `${pizza.data.attributes.title}`); 
                     //nameInput.setAttribute("placeholder", "Full Name")
 
                     // Create an input element
                     const descriptionInput = document.createElement("input"); 
+                    descriptionInput.setAttribute("id", "edit-form-description-input")
                     descriptionInput.setAttribute("type", "text"); 
                     descriptionInput.setAttribute("value", `${pizza.data.attributes.description}`); 
                     //nameInput.setAttribute("placeholder", "Full Name")
@@ -240,8 +242,47 @@ function editPizza() {
 
 function updatePizza(){
     event.preventDefault()
+
+    const configObj = {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+
+        body: JSON.stringify ({
+            title: event.target.querySelector("#edit-form-title-input").value,
+            description: event.target.querySelector("#edit-form-description-input").value
+    }),
+    }
+    fetch(PIZZAS_URL + `/${event.target.dataset.id}`, configObj)    
+        .then(response => response.json())
+        .then(pizza => {
+            const updatedPizza = new Pizza(pizza, pizza.data.attributes)
+
+            //update the same pizza card
+            
+         //thats a child of dataset with the ipizza id
+
+         //grab node that dataset is on
+         //chain another queryselector on it and get the card wit the calss on it
+
+         //const link = document.querySelector('[data-link="1"]'); interpolate the ``1 and chain on the other stuff
+      
+         
+         const getTheCardTitle = document.querySelector(".").dataset.genre
+            debugger
+            getTheCardTitle.innerHTML += updatedPizza.title 
     
-    console.log("hi")
+            
+            //document.querySelector("#edit-form").addEventListener('submit', updatePizza)
+            //document.querySelector("#edit-form").reset();
+            document.querySelector("#edit-form-title-input").value = ""
+            document.querySelector("#edit-form-description-input").value = ""
+
+            //make the form go away somehow
+            
+        })
 }
 
 

@@ -13,7 +13,9 @@ class Pizza {
     renderPizzaCard() {
         //debugger
         return `
+        
     <div class="pizza-card-${this.id}">
+    <div class="row">
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
 
@@ -29,7 +31,7 @@ class Pizza {
               <ul class="list-group" id="pizza-${this.id}-toppings"> </ul>
 
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
+                
                 </div>
               </div>
             </div>
@@ -39,8 +41,3 @@ class Pizza {
     }
 
 }
-
-//notes from the bootsrtap card 
-
-//<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-//<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>

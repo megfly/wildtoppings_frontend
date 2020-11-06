@@ -237,7 +237,12 @@ function editPizza() {
             // pizzaForm.innerHTML = editFormHTML //changes it to edit pizza form
 
                         document.querySelector("#edit-form").addEventListener('submit', updatePizza)
+                        document.getElementById("edit-form").addEventListener("submit", hideForm);
         })
+}
+
+function hideForm(){
+    document.getElementById("edit-form").style.display="none"
 }
 
 function updatePizza(){
@@ -260,28 +265,18 @@ function updatePizza(){
         .then(pizza => {
             const updatedPizza = new Pizza(pizza, pizza.data.attributes)
 
-            //update the same pizza card
+            const getTheCardTitle = document.querySelector(`.pizza-card-${pizza.data.id}`).querySelector('.card-title')
+            getTheCardTitle.innerHTML = ""
             
-         //thats a child of dataset with the ipizza id
-
-         //grab node that dataset is on
-         //chain another queryselector on it and get the card wit the calss on it
-
-         //const link = document.querySelector('[data-link="1"]'); interpolate the ``1 and chain on the other stuff
-      
-         
-         const getTheCardTitle = document.querySelector(".").dataset.genre
-            debugger
+            const getTheCardDescription = document.querySelector(`.pizza-card-${pizza.data.id}`).querySelector('.card-text')
+            getTheCardDescription.innerHTML = ""
+            
             getTheCardTitle.innerHTML += updatedPizza.title 
-    
-            
-            //document.querySelector("#edit-form").addEventListener('submit', updatePizza)
-            //document.querySelector("#edit-form").reset();
+            getTheCardDescription.innerHTML += updatedPizza.description
+
             document.querySelector("#edit-form-title-input").value = ""
             document.querySelector("#edit-form-description-input").value = ""
 
-            //make the form go away somehow
-            
         })
 }
 

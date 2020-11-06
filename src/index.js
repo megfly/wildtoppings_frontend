@@ -1,4 +1,5 @@
-//Edit pizza form doesnt show up on newly created pizzas unless we refresh page???
+//Edit pizza form doesnt show up on newly created pizzas unless we put on post request...but its on get request so now theres two???
+//dropdown doesnt update
 
 // URL's
 const BASE_URL = "http://localhost:3000"
@@ -79,14 +80,14 @@ function postRequestForPizzaForm(title, description) {
                     
                     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
 
-                        let eachPizzaContainer = document.querySelector(`#pizza-container`)
-                        const editButton = document.createElement('button')
+                        // let eachPizzaContainer = document.querySelector(`#pizza-container`)
+                        // const editButton = document.createElement('button')
             
-                        editButton.setAttribute("class", "edit-pizza")
-                        editButton.setAttribute("data-id", `${pizza.data.id}`)
-                        editButton.innerText = "Edit Pizza"
+                        // editButton.setAttribute("class", "edit-pizza")
+                        // editButton.setAttribute("data-id", `${pizza.data.id}`)
+                        // editButton.innerText = "Edit Pizza"
             
-                        eachPizzaContainer.appendChild(editButton)
+                        // eachPizzaContainer.appendChild(editButton)
                     addPizzaEditButtonToTheDom(pizza)
                     addNewPizzasToDropdown(brandNewPizza)
             })
@@ -134,7 +135,7 @@ function addPizzaEditButtonToTheDom(pizza) {
 
         eachPizzaContainer.appendChild(editButton)
         
-        document.querySelectorAll(".edit-pizza").forEach(btn => btn.addEventListener('click', editPizza))
+        document.querySelectorAll(".edit-pizza").forEach(btn => btn.addEventListener('click', updatePizza))
 }
 
 
@@ -189,57 +190,57 @@ function deleteTopping() {
 
 
 //EDIT WHOLE PIZZAS
-function editPizza() {
-    //event.preventDefault()
-    const id = event.target.dataset.id 
+// function editPizza() {
+//     //event.preventDefault()
+//     const id = event.target.dataset.id 
 
-    fetch(PIZZAS_URL + `/${event.target.dataset.id}`) //data returned?
-        .then(response => response.json())
-        .then(pizza => {
+//     fetch(PIZZAS_URL + `/${event.target.dataset.id}`) //data returned?
+//         .then(response => response.json())
+//         .then(pizza => {
             
-            let eachPizzaContainer = document.querySelector(`#pizza-container`)
+//             let eachPizzaContainer = document.querySelector(`#pizza-container`)
 
-                // Create a form synamically 
-                    const editForm = document.createElement("form"); 
-                    editForm.setAttribute("id", "edit-form")
-                    editForm.setAttribute("method", "post"); 
-                    editForm.setAttribute("data-id", `${pizza.data.id}`)
+//                 // Create a form synamically 
+//                     const editForm = document.createElement("form"); 
+//                     editForm.setAttribute("id", "edit-form")
+//                     editForm.setAttribute("method", "post"); 
+//                     editForm.setAttribute("data-id", `${pizza.data.id}`)
      
   
-                    // Create an input element
-                    const nameInput = document.createElement("input"); 
-                    nameInput.setAttribute("id", "edit-form-title-input")
-                    nameInput.setAttribute("type", "text"); 
-                    nameInput.setAttribute("value", `${pizza.data.attributes.title}`); 
-                    //nameInput.setAttribute("placeholder", "Full Name")
+//                     // Create an input element
+//                     const nameInput = document.createElement("input"); 
+//                     nameInput.setAttribute("id", "edit-form-title-input")
+//                     nameInput.setAttribute("type", "text"); 
+//                     nameInput.setAttribute("value", `${pizza.data.attributes.title}`); 
+//                     //nameInput.setAttribute("placeholder", "Full Name")
 
-                    // Create an input element
-                    const descriptionInput = document.createElement("input"); 
-                    descriptionInput.setAttribute("id", "edit-form-description-input")
-                    descriptionInput.setAttribute("type", "text"); 
-                    descriptionInput.setAttribute("value", `${pizza.data.attributes.description}`); 
-                    //nameInput.setAttribute("placeholder", "Full Name")
+//                     // Create an input element
+//                     const descriptionInput = document.createElement("input"); 
+//                     descriptionInput.setAttribute("id", "edit-form-description-input")
+//                     descriptionInput.setAttribute("type", "text"); 
+//                     descriptionInput.setAttribute("value", `${pizza.data.attributes.description}`); 
+//                     //nameInput.setAttribute("placeholder", "Full Name")
 
-                    // create a submit button 
-                    const s = document.createElement("input"); 
-                    s.setAttribute("type", "submit"); 
-                    s.setAttribute("value", "Submit"); 
+//                     // create a submit button 
+//                     const s = document.createElement("input"); 
+//                     s.setAttribute("type", "submit"); 
+//                     s.setAttribute("value", "Submit"); 
 
-                         // Append the full name input to the form 
-                         editForm.appendChild(nameInput);
-                         editForm.appendChild(descriptionInput)
-                          // Append the submit button to the form 
-                        editForm.appendChild(s); 
-                        eachPizzaContainer.appendChild(editForm)
+//                          // Append the full name input to the form 
+//                          editForm.appendChild(nameInput);
+//                          editForm.appendChild(descriptionInput)
+//                           // Append the submit button to the form 
+//                         editForm.appendChild(s); 
+//                         eachPizzaContainer.appendChild(editForm)
     
 
-            // const pizzaForm = document.getElementById("create-pizza-form") //grabs create pizza form
-            // pizzaForm.innerHTML = editFormHTML //changes it to edit pizza form
+//             // const pizzaForm = document.getElementById("create-pizza-form") //grabs create pizza form
+//             // pizzaForm.innerHTML = editFormHTML //changes it to edit pizza form
 
-                        document.querySelector("#edit-form").addEventListener('submit', updatePizza)
-                        document.getElementById("edit-form").addEventListener("submit", hideForm);
-        })
-}
+//                         document.querySelector("#edit-form").addEventListener('submit', updatePizza)
+//                         document.getElementById("edit-form").addEventListener("submit", hideForm);
+//         })
+// }
 
 function hideForm(){
     document.getElementById("edit-form").style.display="none"

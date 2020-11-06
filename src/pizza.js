@@ -16,9 +16,9 @@ class Pizza {
             <div class="pizza-card-${this.id}">
             <br>
 
-            <div data-id=${this.id}
-                <h2 class="card-title">${this.title}</h2>
-                    <p class="card-text">${this.description}</p>
+            <div data-id=${this.id}>
+                <h2 class="card-title" data-id=${this.id}>${this.title}</h2>
+                    <p class="card-text" data-id=${this.id}>${this.description}</p>
 
 
 

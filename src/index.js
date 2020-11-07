@@ -244,6 +244,7 @@ function editPizza() {
 
                         document.querySelector("#edit-form").addEventListener('submit', updatePizza)
                         document.getElementById("edit-form").addEventListener("submit", hideForm);
+                        
                         //document.getElementById("edit-form").addEventListener("submit", addUpdatedPizzasToDropdown)
         })
 }
@@ -287,6 +288,7 @@ function updatePizza(){
             //document.getElementById("edit-form").addEventListener("submit", addUpdatedPizzasToDropdown)
             //addNewPizzasToDropdown(updatedPizza)
             addUpdatedPizzasToDropdown(updatedPizza)
+            document.getElementById("edit-form").addEventListener("click", hideForm);
             //debugger
 
         })

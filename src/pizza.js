@@ -23,7 +23,6 @@ class Pizza {
         <p class="card-text" data-id=${this.id}>${this.description}</p>
         <ul id="pizza-${this.id}-toppings"> </ul>
 
-
 `
     }
 }

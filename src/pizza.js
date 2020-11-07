@@ -16,7 +16,7 @@ class Pizza {
         <div id="pizza-card-${this.id}">
         <svg class="bd-placeholder-img card-img-top" width="100%" height="25" xmlns="http://www.w3.org/2000/svg" 
         preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-        <img src= "https://img.pngio.com/pusheen-eating-pizza-cat-eating-pizza-png-223_191.jpg"> 
+       <img src="file:///Users/meghanflynn/Desktop/imageedit_4_4527841023.png" class="center">
     
         <rect width="100%" height="100%" fill="#55595c"/></svg>
         <h5 class="card-title" data-id=${this.id}>${this.title}</h5>

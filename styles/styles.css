@@ -1,4 +1,11 @@
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 .cards {
   background-color: black;
   display: grid;
@@ -49,7 +56,7 @@
     }
   }
   body {
-    background-color: lightskyblue;
+    background-color: orange;
     
   }
 

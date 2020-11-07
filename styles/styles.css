@@ -31,8 +31,22 @@
 
   }
 
+  .form-group {
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+  }
+
+  #add-a-topping-form {
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+  }
+
   #edit-pizza {
-    /* position: relative; */
+    position: relative; 
     float: right;
     right:0;
     bottom:0;

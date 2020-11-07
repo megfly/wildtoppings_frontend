@@ -153,7 +153,7 @@ function addPizzaToppingsToDOM(pizza) {
                     const deleteButton = document.createElement('button')
 
                     deleteButton.setAttribute("id", "delete-topping")
-                    deleteButton.setAttribute("class", "btn btn-sm btn-outline-secondary")
+                    deleteButton.setAttribute("class", "btn btn-outline-danger btn-sm")
                     deleteButton.setAttribute("data-id", `${ing.id}`)
                     deleteButton.innerText = "Delete Topping"
 
@@ -330,7 +330,7 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
                 const deleteButton = document.createElement('button')
 
                 deleteButton.setAttribute("id", "delete-topping")
-                deleteButton.setAttribute("class", "btn btn-sm btn-outline-secondary")
+                deleteButton.setAttribute("class", "btn btn-outline-danger btn-sm")
                 deleteButton.setAttribute("data-id", `${json.data.id}`)
                 deleteButton.innerText = "Delete Topping"
 

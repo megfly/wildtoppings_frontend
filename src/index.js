@@ -119,7 +119,8 @@ function toppingFormHandler(event) {
 function addPizzaEditButtonToTheDom(pizza) {
     //debugger
     console.log(pizza)
-        let eachPizzaContainer = document.querySelector(`#pizza-container`)
+        //let eachPizzaContainer = document.querySelector(`#pizza-container`)
+        const eachPizzaCard = document.querySelector(`#pizza-card-${pizza.id}`)
         const editButton = document.createElement('button')
 
         editButton.setAttribute("id", "edit-pizza")
@@ -127,7 +128,7 @@ function addPizzaEditButtonToTheDom(pizza) {
         editButton.setAttribute("data-id", `${pizza.id}`)
         editButton.innerText = "Edit Pizza"
 
-        eachPizzaContainer.appendChild(editButton)
+        eachPizzaCard.appendChild(editButton)
         
         document.querySelectorAll("#edit-pizza").forEach(btn => btn.addEventListener('click', editPizza))
 }
@@ -233,9 +234,7 @@ function editPizza() {
                          editForm.appendChild(nameInput);
                          editForm.appendChild(descriptionInput)
                           // Append the submit button to the form 
-                        editForm.appendChild(s); 
-
-                        debugger 
+                        editForm.appendChild(s);  
 
                         thePizzaCard.appendChild(editForm)
     

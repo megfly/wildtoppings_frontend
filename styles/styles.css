@@ -1,28 +1,66 @@
 
+.cards {
+  background-color: black;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
+  grid-auto-rows: auto;
+  grid-gap: 1rem;
+  }
+
+  .h5.card-title {
+    font-size: large;
+  }
+
+  #pizza-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
+    position: relative;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+
+  }
+
+  #edit-pizza {
+    /* position: relative; */
+    float: right;
+    right:0;
+    bottom:0;
+  }
+
+
    .jumbotron {
+    background-image: url("https://lh3.googleusercontent.com/proxy/YHbvi2xmRSxLvCriOFpOxg58Mmqx6ejXo391Q2ZCSql3LiVxYk8JNrRQLJ9_2r-CpC33vWbh7YLpqGKgOP6aBl_OE_8ufjz5zaKfxeO3uVWynARFKPrtHvRbsA94qpPNrjQ");
      background-color: orange;
     padding-top: 3rem;
     padding-bottom: 3rem;
     margin-bottom: 0;
-    background-color: rgb(255, 255, 255);
+    background-color: grey;
   }
   @media (min-width: 768px) {
     .jumbotron {
+      background-image: url("https://cdn3.vectorstock.com/i/1000x1000/42/17/pizza-slice-seamless-pattern-on-blue-background-vector-15414217.jpg");
       background-color: orange;
       padding-top: 1rem;
       padding-bottom: 1rem;
     }
   }
   body {
-    background-color: orange;
+    background-color: lightskyblue;
+    
   }
 
   .jumbotron p:last-child {
+    background-image: url("https://cdn3.vectorstock.com/i/1000x1000/42/17/pizza-slice-seamless-pattern-on-blue-background-vector-15414217.jpg");
     background-color: orange;
     margin-bottom: 0;
   }
   
   .jumbotron h1 {
+    background-image: url("https://cdn3.vectorstock.com/i/1000x1000/42/17/pizza-slice-seamless-pattern-on-blue-background-vector-15414217.jpg");
     background-color: orange;
     font-weight: 300;
   }
@@ -39,12 +77,6 @@
   
   footer p {
     margin-bottom: .25rem;
-  }
-
-  div.a {
-    display: grid;
-    text-align: center;
-    background-color: orange;
   }
   
   div.card {

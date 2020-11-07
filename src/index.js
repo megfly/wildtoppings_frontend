@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // CREATE A NEW TOPPING SUBMIT EVENT LISTENER            
                 let findAddToppingToPizzaForm = document.querySelector(`#add-a-topping-form`)
                 findAddToppingToPizzaForm.addEventListener("submit", (event) => {
-                    debugger
+                   
                     alertForTopping()
                     toppingFormHandler(event)
                     document.querySelector("#add-a-topping-form").reset();
@@ -144,6 +144,7 @@ function addPizzaToppingsToDOM(pizza) {
         const ul = document.querySelector(`#pizza-${ing.pizza_id}-toppings`)
 
             const li = document.createElement('li')
+           
             li.innerHTML += `${ing.ingredient_name}`
   
                 ul.appendChild(li)
@@ -151,7 +152,7 @@ function addPizzaToppingsToDOM(pizza) {
                     const deleteButton = document.createElement('button')
 
                     deleteButton.setAttribute("id", "delete-topping")
-                    deleteButton.setAttribute("class", "btn btn-outline-success btn-sm")
+                    deleteButton.setAttribute("class", "btn btn-sm btn-outline-secondary")
                     deleteButton.setAttribute("data-id", `${ing.id}`)
                     deleteButton.innerText = "Delete Topping"
 
@@ -195,7 +196,7 @@ function editPizza() {
         .then(pizza => {
             
             // let eachPizzaContainer = document.querySelector(`#pizza-container`)
-            let thePizzaCard = document.querySelector(`.pizza-card-${pizza.data.id}`)
+            let thePizzaCard = document.querySelector(`#pizza-card-${pizza.data.id}`)
 
                 // Create a form dynamically 
                     const editForm = document.createElement("form"); 
@@ -272,10 +273,10 @@ function updatePizza(){
         .then(pizza => {
             const updatedPizza = new Pizza(pizza.data, pizza.data.attributes)
 
-            const getTheCardTitle = document.querySelector(`.pizza-card-${pizza.data.id}`).querySelector('.card-title')
+            const getTheCardTitle = document.querySelector(`#pizza-card-${pizza.data.id}`).querySelector('.card-title')
             getTheCardTitle.innerHTML = ""
             
-            const getTheCardDescription = document.querySelector(`.pizza-card-${pizza.data.id}`).querySelector('.card-text')
+            const getTheCardDescription = document.querySelector(`#pizza-card-${pizza.data.id}`).querySelector('.card-text')
             getTheCardDescription.innerHTML = ""
             
             getTheCardTitle.innerHTML += updatedPizza.title 
@@ -321,13 +322,14 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
 
                 const ul = document.querySelector(`#pizza-${pizza_id}-toppings`)
                 const li = document.createElement('li')
+                
                 li.innerHTML += `${ingredient_name}`
                 ul.appendChild(li)
 
                 const deleteButton = document.createElement('button')
 
                 deleteButton.setAttribute("id", "delete-topping")
-                deleteButton.setAttribute("class", "btn btn-outline-success btn-sm")
+                deleteButton.setAttribute("class", "btn btn-sm btn-outline-secondary")
                 deleteButton.setAttribute("data-id", `${json.data.id}`)
                 deleteButton.innerText = "Delete Topping"
 

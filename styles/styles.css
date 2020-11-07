@@ -1,26 +1,34 @@
 
    .jumbotron {
+     background-color: orange;
     padding-top: 3rem;
     padding-bottom: 3rem;
     margin-bottom: 0;
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
   }
   @media (min-width: 768px) {
     .jumbotron {
-      padding-top: 6rem;
-      padding-bottom: 6rem;
+      background-color: orange;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
     }
   }
-  
+  body {
+    background-color: orange;
+  }
+
   .jumbotron p:last-child {
+    background-color: orange;
     margin-bottom: 0;
   }
   
   .jumbotron h1 {
+    background-color: orange;
     font-weight: 300;
   }
   
   .jumbotron .container {
+    background-color: orange;
     max-width: 40rem;
   }
   
@@ -33,28 +41,17 @@
     margin-bottom: .25rem;
   }
 
-  .grid-container {
-    display: grid;
-  }
-
-  .container {
-    display: grid;
-  }
-
   div.a {
+    display: grid;
     text-align: center;
+    background-color: orange;
   }
-
-  #edit-form {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    margin-bottom: 0;
+  
+  div.card {
+    display: grid;
+    background-color: #eeeeee;
+    box-shadow: 10px 10px grey;
+    padding: 10px;
+    border-radius: 10px;
   }
-
-  .form-group-topping {
-    background-color: azure;
-  }
-
-  /* #pizza-container {
-    display: grid
-  } */
+  

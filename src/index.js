@@ -1,6 +1,3 @@
-
-//dropdown doesnt update with new patched pizza title
-
 // URL's
 const BASE_URL = "http://localhost:3000"
 const PIZZAS_URL = `${BASE_URL}/api/v1/pizzas`
@@ -77,7 +74,6 @@ function postRequestForPizzaForm(title, description) {
 
                     console.log(pizza.data)
                     console.log(pizza.data.attributes)
-                    //debugger
                     
                     document.querySelector('#pizza-container').innerHTML += brandNewPizza.renderPizzaCard()
 
@@ -85,6 +81,7 @@ function postRequestForPizzaForm(title, description) {
                     addNewPizzasToDropdown(brandNewPizza)
             })
         }
+
 
 
 
@@ -117,9 +114,9 @@ function toppingFormHandler(event) {
 
 
 function addPizzaEditButtonToTheDom(pizza) {
-    //debugger
+    
     console.log(pizza)
-        //let eachPizzaContainer = document.querySelector(`#pizza-container`)
+        
         const eachPizzaCard = document.querySelector(`#pizza-card-${pizza.id}`)
         const editButton = document.createElement('button')
 
@@ -132,8 +129,6 @@ function addPizzaEditButtonToTheDom(pizza) {
         
         document.querySelectorAll("#edit-pizza").forEach(btn => btn.addEventListener('click', editPizza))
 }
-
-
 
 
 
@@ -172,8 +167,6 @@ function addPizzaToppingsToDOM(pizza) {
 
 //FETCH to DElete topping
 function deleteTopping() {
-    
-    //event.preventDefault()
 
     const configObj = {
         method: "DELETE",
@@ -182,21 +175,22 @@ function deleteTopping() {
             "Accept": "application/json"
         },
     } 
-    fetch(TOPPINGS_URL + `/${event.target.dataset.id}`, configObj) //target the dataset id of the topping that is clicked
+    fetch(TOPPINGS_URL + `/${event.target.dataset.id}`, configObj) 
         .then(event.target.parentElement.remove())
 }
+
+
 
 
 //EDIT WHOLE PIZZAS
 function editPizza() {
     //event.preventDefault()
     const id = event.target.dataset.id 
-//debugger
-    fetch(PIZZAS_URL + `/${event.target.dataset.id}`) //data returned?
+
+    fetch(PIZZAS_URL + `/${event.target.dataset.id}`) 
         .then(response => response.json())
         .then(pizza => {
             
-            // let eachPizzaContainer = document.querySelector(`#pizza-container`)
             let thePizzaCard = document.querySelector(`#pizza-card-${pizza.data.id}`)
 
                 // Create a form dynamically 
@@ -213,7 +207,7 @@ function editPizza() {
                     nameInput.setAttribute("id", "edit-form-title-input")
                     nameInput.setAttribute("type", "text"); 
                     nameInput.setAttribute("value", `${pizza.data.attributes.title}`); 
-                    //nameInput.setAttribute("placeholder", "Full Name")
+                    
 
                     // Create an input element
                     const descriptionInput = document.createElement("input"); 
@@ -221,37 +215,34 @@ function editPizza() {
                     descriptionInput.setAttribute("id", "edit-form-description-input")
                     descriptionInput.setAttribute("type", "text"); 
                     descriptionInput.setAttribute("value", `${pizza.data.attributes.description}`); 
-                    //nameInput.setAttribute("placeholder", "Full Name")
+                   
 
                     // create a submit button 
                     const s = document.createElement("input"); 
                     s.setAttribute("class", "btn btn-primary")
+                    s.setAttribute("id", "edit-pizza-submit-btn")
                     s.setAttribute("type", "submit"); 
                     s.setAttribute("value", "Submit"); 
                     
-                    
-                         // Append the full name input to the form 
                          editForm.appendChild(nameInput);
                          editForm.appendChild(descriptionInput)
-                          // Append the submit button to the form 
+                          
                         editForm.appendChild(s);  
 
                         thePizzaCard.appendChild(editForm)
-    
-
-            // const pizzaForm = document.getElementById("create-pizza-form") //grabs create pizza form
-            // pizzaForm.innerHTML = editFormHTML //changes it to edit pizza form
 
                         document.querySelector("#edit-form").addEventListener('submit', updatePizza)
-                        document.getElementById("edit-form").addEventListener("submit", hideForm);
-                        
-                        //document.getElementById("edit-form").addEventListener("submit", addUpdatedPizzasToDropdown)
+        // let editPizzaSubmitBtn = document.querySelector("#edit-pizza-submit-btn")
+
+        // editPizzaSubmitBtn.addEventListener("click", (event) => {
+        // console.log("did this work")
+        // document.getElementById(`edit-form`).style.display = "none"
+        // })
         })
+
 }
 
-function hideForm(){
-    document.getElementById("edit-form").style.display="none"
-}
+
 
 function updatePizza(){
     event.preventDefault()
@@ -282,23 +273,18 @@ function updatePizza(){
             getTheCardTitle.innerHTML += updatedPizza.title 
             getTheCardDescription.innerHTML += updatedPizza.description
 
-            document.querySelector("#edit-form-title-input").value = ""
-            document.querySelector("#edit-form-description-input").value = ""
-
-            //document.getElementById("edit-form").addEventListener("submit", addUpdatedPizzasToDropdown)
-            //addNewPizzasToDropdown(updatedPizza)
             addUpdatedPizzasToDropdown(updatedPizza)
-            document.getElementById("edit-form").addEventListener("click", hideForm);
-            //debugger
-
+            
         })
+
 }
+
+
 
 
 //POST REQUEST TO ADD TOPPING TO PIZZA
 function postRequestForToppingForm(ingredient_name, pizza_id) {
 
-    //event.preventDefault()
     const configObj = {
         method: "POST",
         headers: {
@@ -316,10 +302,6 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
             .then(json => { 
  
                 let brandNewPizzaTopping = new Topping(json.data, json.data.attributes) 
-                //document.querySelector('#pizza-container').innerHTML += brandNewPizzaTopping.renderPizzaCard()
-// console.log(json)
-// console.log(json.data)
-// console.log(json.data.attributes)
 
                 const ul = document.querySelector(`#pizza-${pizza_id}-toppings`)
                 const li = document.createElement('li')
@@ -341,19 +323,22 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
 
 
 
+
 //SHOW THE ADD A TOPPING FORM WHEN ITS CLICKED
 function showForm() {
     document.getElementById(`add-a-topping-form`).style.display = "block"
 };
+
+
 
 function hideForm() {
     document.getElementById(`add-a-topping-form`).style.display = "none"
 }
 
 
+
 //get pizzas from DROPDOWN
 function getPizzasForDropdown(pizza) {
-    //console.log(pizza)
     
     const pizzaSelectList = document.querySelector('#pizza-list')
     
@@ -367,14 +352,15 @@ function getPizzasForDropdown(pizza) {
 }
 
 
+
+
+
 function addNewPizzasToDropdown(newPizza) {
 
     const pizzaSelectList = document.querySelector('#pizza-list')
 
-    //debugger
-
     let myOption = document.createElement("option")
-    myOption.setAttribute("data-id", `${newPizza.id}`) //id is undefined???
+    myOption.setAttribute("data-id", `${newPizza.id}`) 
     myOption.setAttribute("id", `option-${newPizza.id}`)
     myOption.innerHTML += `${newPizza.title}`
 
@@ -388,21 +374,12 @@ function addUpdatedPizzasToDropdown(updatedPizza) {
     
 
     let myOption = document.querySelector(`#option-${updatedPizza.id}`)
-    //this is broken
 
-    //debugger
-    myOption.innerText = `${updatedPizza.title}` //this is where its broken
-
-    //pizzaSelectList.appendChild(myOption)
-    
-    // let pizzaSelectList = document.querySelector('#pizza-list')
-    // let myOptionFromList = document.querySelector('#option').getAttribute("data-id", `${updatedPizza.id}`)
-    // debugger
-    
-    // myOptionFromList.innerHTML = `${updatedPizza.title}`
-
-
+    myOption.innerText = `${updatedPizza.title}` 
 }
+
+
+
 
 function alertForPizza(){
     const titleInput = document.querySelector('#input-title').value
@@ -417,6 +394,9 @@ function alertForPizza(){
         alert("Woohoo! Creation successful!")
     }; 
 }
+
+
+
 
 function alertForTopping() {
     const toppingInput = document.querySelector('#input-topping').value

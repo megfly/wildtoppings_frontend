@@ -1,6 +1,5 @@
 class Topping {
     constructor(topping, toppingAttributes) {
-        //debugger
         Topping.all = []
         this.id = topping.id 
         this.pizza_id = toppingAttributes.pizza_id

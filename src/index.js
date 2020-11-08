@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
 // Fetch request to POST new pizzas
 function postRequestForPizzaForm(title, description) {
-
+//debugger
         const configObj = {
             method: "POST",
             headers: {
@@ -79,7 +79,10 @@ function postRequestForPizzaForm(title, description) {
 
                     addPizzaEditButtonToTheDom(pizza.data)
                     addNewPizzasToDropdown(brandNewPizza)
+                    
+                    document.querySelectorAll("#delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
             })
+
         }
 
 
@@ -264,14 +267,17 @@ function updatePizza(){
         .then(pizza => {
             const updatedPizza = new Pizza(pizza.data, pizza.data.attributes)
 
-            const getTheCardTitle = document.querySelector(`#pizza-card-${pizza.data.id}`).querySelector('.card-title')
+            const getTheCardTitle = document.querySelector("#edit-form-title-input").value
             getTheCardTitle.innerHTML = ""
             
-            const getTheCardDescription = document.querySelector(`#pizza-card-${pizza.data.id}`).querySelector('.card-text')
+            const getTheCardDescription = document.querySelector("#edit-form-description-input").value
             getTheCardDescription.innerHTML = ""
             
-            getTheCardTitle.innerHTML += updatedPizza.title 
-            getTheCardDescription.innerHTML += updatedPizza.description
+            let thePizzaCardH4Title = document.querySelector(".card-title")
+            thePizzaCardH4Title.innerHTML = updatedPizza.title 
+    debugger
+            let thePizzaDescription = document.querySelector(".card-text")
+            getTheCardDescription.innerHTML = updatedPizza.description
 
             addUpdatedPizzasToDropdown(updatedPizza)
             
@@ -318,6 +324,7 @@ function postRequestForToppingForm(ingredient_name, pizza_id) {
 
                 li.appendChild(deleteButton)
 
+                document.querySelectorAll("#delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
         })
 }
 
@@ -390,9 +397,7 @@ function alertForPizza(){
 
     if (titleInput === null || titleInput === "" && descriptionInput === null || descriptionInput === "") {
         alert("Please try again! Form must not be blank!")
-    } else {
-        alert("Woohoo! Creation successful!")
-    }; 
+    } 
 }
 
 
@@ -403,7 +408,5 @@ function alertForTopping() {
 
     if (toppingInput === null || toppingInput === "") {
         alert("Please try again! Form must not be blank!")
-    } else {
-        alert("Woohoo! Creation successful!")
-    }
+    } 
 }

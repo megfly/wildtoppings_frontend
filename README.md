@@ -8,6 +8,8 @@ WildToppings is an app for pizza lovers to keep track of all the wild pizza's th
 
 # Instructions
 
+Backends repo: https://github.com/megfly/wildtoppings_backend
+
 -Fork and clone
 -CD into wildtoppings_backend
 -bundle install

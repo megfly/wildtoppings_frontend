@@ -82,12 +82,12 @@ function postRequestForPizzaForm(title, description) {
                     
                     document.querySelectorAll("#delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
 
-                    let editPizzaSubmitBtn = document.querySelector("#edit-pizza-submit-btn")
+                    // let editPizzaSubmitBtn = document.querySelector("#edit-pizza-submit-btn")
 
-                    editPizzaSubmitBtn.addEventListener("click", (event) => {
-                    console.log("did this work")
-                    document.getElementById(`edit-form`).style.display = "none"
-                    })
+                    // editPizzaSubmitBtn.addEventListener("click", (event) => {
+                    // console.log("did this work")
+                    // document.getElementById(`edit-form`).style.display = "none"
+                    // })
             })
 
         }

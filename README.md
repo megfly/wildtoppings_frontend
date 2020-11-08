@@ -8,13 +8,13 @@ WildToppings is an app for pizza lovers to keep track of all the wild pizza's th
 
 # Instructions
 
-Fork and clone
-CD into wildtoppings_backend
-bundle install
-rails db:migrate
-rails s
-then CD into wildtoppings_frontend
-open index.html
+-Fork and clone
+-CD into wildtoppings_backend
+-bundle install
+-rails db:migrate
+-rails s
+-then CD into wildtoppings_frontend
+-open index.html
 
 
 Contributor's Guide: https://www.contributor-covenant.org/

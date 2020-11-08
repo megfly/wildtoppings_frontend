@@ -81,6 +81,13 @@ function postRequestForPizzaForm(title, description) {
                     addNewPizzasToDropdown(brandNewPizza)
                     
                     document.querySelectorAll("#delete-topping").forEach(btn => btn.addEventListener('click', deleteTopping))
+
+                    let editPizzaSubmitBtn = document.querySelector("#edit-pizza-submit-btn")
+
+                    editPizzaSubmitBtn.addEventListener("click", (event) => {
+                    console.log("did this work")
+                    document.getElementById(`edit-form`).style.display = "none"
+                    })
             })
 
         }
@@ -235,12 +242,7 @@ function editPizza() {
                         thePizzaCard.appendChild(editForm)
 
                         document.querySelector("#edit-form").addEventListener('submit', updatePizza)
-        // let editPizzaSubmitBtn = document.querySelector("#edit-pizza-submit-btn")
 
-        // editPizzaSubmitBtn.addEventListener("click", (event) => {
-        // console.log("did this work")
-        // document.getElementById(`edit-form`).style.display = "none"
-        // })
         })
 
 }
@@ -272,11 +274,12 @@ function updatePizza(){
             
             const getTheCardDescription = document.querySelector("#edit-form-description-input").value
             getTheCardDescription.innerHTML = ""
+            //didnt grab the correct one
             
-            let thePizzaCardH4Title = document.querySelector(".card-title")
+            let thePizzaCardH4Title = document.querySelector(`.card-title-${pizza.data.id}`)
             thePizzaCardH4Title.innerHTML = updatedPizza.title 
-    debugger
-            let thePizzaDescription = document.querySelector(".card-text")
+    
+            let thePizzaDescription = document.querySelector(`.card-text-${pizza.data.id}`)
             getTheCardDescription.innerHTML = updatedPizza.description
 
             addUpdatedPizzasToDropdown(updatedPizza)

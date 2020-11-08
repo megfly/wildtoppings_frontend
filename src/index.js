@@ -270,15 +270,14 @@ function updatePizza(){
             const updatedPizza = new Pizza(pizza.data, pizza.data.attributes)
 
             const getTheCardTitle = document.querySelector("#edit-form-title-input").value
-            getTheCardTitle.innerHTML = ""
+            //getTheCardTitle.innerHTML = ""
             
             const getTheCardDescription = document.querySelector("#edit-form-description-input").value
-            getTheCardDescription.innerHTML = ""
-            //didnt grab the correct one
+            //getTheCardDescription.innerHTML = ""
             
             let thePizzaCardH4Title = document.querySelector(`.card-title-${pizza.data.id}`)
             thePizzaCardH4Title.innerHTML = updatedPizza.title 
-    
+            
             let thePizzaDescription = document.querySelector(`.card-text-${pizza.data.id}`)
             getTheCardDescription.innerHTML = updatedPizza.description
 

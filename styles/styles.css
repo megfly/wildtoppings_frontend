@@ -7,6 +7,7 @@
 }
 
 .cards {
+  border: black;
   background-color: black;
   display: grid;
   grid-template-columns: repeat(auto-fill, 250px);
@@ -19,6 +20,9 @@
   }
 
   #pizza-container {
+    border-style: solid;
+    border-color: rgb(88, 88, 88);
+    border-width: medium;
     display: grid;
     grid-template-columns: repeat(auto-fill, 250px);
     grid-auto-rows: auto;
@@ -87,6 +91,9 @@
   }
   
   .jumbotron .container {
+    border-style: solid;
+    border-width: medium;
+    border-color: rgb(88, 88, 88);
     background-color: orange;
     max-width: 40rem;
   }

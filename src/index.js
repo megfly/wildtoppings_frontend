@@ -44,6 +44,15 @@ function randomlyGeneratePizza() {
     let randomIngredient = ingredients_array[randomNumber]  
     console.log(randomIngredient)
 
+    //made a li element and made innerhtml the random ingredient
+    let garbagePizzaLi = document.createElement('li')
+    garbagePizzaLi.setAttribute = ("class", "garbage-div")
+    garbagePizzaLi.innerHTML = randomIngredient
+
+    //attached the li element to the piza container
+    const pizzaContainer = document.querySelector("#pizza-container")
+    pizzaContainer.appendChild(garbagePizzaLi)
+
 }
 
 

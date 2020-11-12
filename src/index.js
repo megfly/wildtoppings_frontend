@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("loaded")
     fetchPizzas()
 
+    //live coding for garbage pizza
+    let pizzaContainerButton = document.querySelector('#pizza-container')
+    let garbagePizzaButton = document.createElement('button')
+    garbagePizzaButton.setAttribute("id", "garbage-pizza-button")
+    garbagePizzaButton.innerHTML = "Garbage Pizza"
+    pizzaContainerButton.appendChild(garbagePizzaButton)
+    //the event listener for the pizza button then goes to fetch pizza
+
 
         // CREATE A NEW PIZZA SUBMIT EVENT LISTENER
         const createPizzaForm = document.querySelector('#create-pizza-form')
@@ -20,6 +28,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 })
 
+
+function randomlyGeneratePizza() {  
+
+    //floor goes down to the next lowest integer
+
+    //generates a random decimal number between 0 and 3(excluding 3) then the floor function takes
+        //that decimal number and it rounds it down to the next lowest integer(whole number)
+    let randomNumber = Math.floor(Math.random() * 3)
+    console.log(randomNumber)
+
+    let ingredients_array = ["pepperoni", "pineapple", "peppers"]
+
+    //random ingredient is found at the index of the array at the random number
+    let randomIngredient = ingredients_array[randomNumber]  
+    console.log(randomIngredient)
+
+}
 
 
 // Fetch Request to GET pizzas
@@ -37,7 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 addPizzaEditButtonToTheDom(pizza)
                 getPizzasForDropdown(pizza)
 
+
             })
+
+            //garbage pizza click event-- then goes to randomlygeneratepizza
+            let garbagepizza = document.querySelector('#garbage-pizza-button')
+            garbagepizza.addEventListener("click", randomlyGeneratePizza)
+
 
                 // CREATE A NEW TOPPING SUBMIT EVENT LISTENER            
                 let findAddToppingToPizzaForm = document.querySelector(`#add-a-topping-form`)
